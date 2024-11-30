@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { saveItem } from './js/itemService';
 import './index.css';
+import  "./css/styles.css";
 import FileUploader from "./js/FileUploader"
+import MainPage from './js/mainPage';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 function AddItem(){
     const [name, setName] = useState("");
@@ -26,9 +30,9 @@ function AddItem(){
       </form>
       
     );
-  }
+}
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<FileUploader/>)
+//const root = ReactDOM.createRoot(document.getElementById('root'));
+//root.render(<MainPage indexRoot = {root}/>)
+root.render(<MainPage/>)
 
