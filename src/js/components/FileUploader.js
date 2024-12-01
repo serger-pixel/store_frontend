@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {saveImage} from './imageService';
+import {saveImage} from '../services/imageService';
 
 function FileUploader()
 {

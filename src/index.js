@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import { saveItem } from './js/itemService';
+import { saveItem } from './js/services/itemService';
 import './index.css';
 import  "./css/styles.css";
-import FileUploader from "./js/FileUploader"
-import MainPage from './js/mainPage';
+import FileUploader from "./js/components/FileUploader"
+import MainPage from './js/components/MainPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
