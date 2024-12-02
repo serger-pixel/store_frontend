@@ -5,8 +5,9 @@ import './index.css';
 import  "./css/styles.css";
 import FileUploader from "./js/components/FileUploader"
 import MainPage from './js/components/MainPage';
+import ListItems from './js/components/ListItems';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+export const root = ReactDOM.createRoot(document.getElementById('root'));
 
 function AddItem(){
     const [name, setName] = useState("");
@@ -34,5 +35,5 @@ function AddItem(){
 
 //const root = ReactDOM.createRoot(document.getElementById('root'));
 //root.render(<MainPage indexRoot = {root}/>)
-root.render(<MainPage/>)
+root.render(<MainPage element ={<ListItems/>}/>)
 

@@ -1,11 +1,12 @@
 import React from "react";
 import { getItem } from "../services/itemService";
+import { backToMain } from "../services/mainPageService";
 
 class ItemPage extends React.Component{
     constructor(props){
         super(props)
         this.state ={props: {}}
-        getItem(props.key, this)
+        getItem(props.id, this)
     }
 
     render(){
@@ -14,6 +15,9 @@ class ItemPage extends React.Component{
             <div>{this.state.props.name}</div>
             <div>{this.state.props.price} {this.state.props.valute}</div>
             <div>{this.state.props.description}</div>
+            <button type="button" onClick={backToMain}>
+                Назад
+            </button>
         </div>
     )}
 }

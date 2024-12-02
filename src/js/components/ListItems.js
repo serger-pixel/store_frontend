@@ -20,7 +20,7 @@ class ListItems extends React.Component{
                     name={this.state.items[ind].name}
                     price={this.state.items[ind].price}
                     valute={this.state.items[ind].valute}
-                    key = {this.state.items[ind].id}
+                    id={this.state.items[ind].id}
                     />
                 )
             }

@@ -1,5 +1,9 @@
 import axios from "axios";
 import ItemPreview from "../components/ItemPreview";
+import { root } from "../..";
+import ItemPage from "../components/ItemPage";
+import MainPage from "../components/MainPage";
+
 
 
 const URL = "http://localhost:8080/items"
@@ -26,14 +30,11 @@ export async function getAllItem(list) {
         list.setState({
             items: response.data
         }, ()=>{
+            console.log(response.data)
         })
     })
 }
 
-export function selectItem(item){
-    item.setState({
-        rend: true
-    }, ()=>{
-        console.log(1);
-    })
+export function selectItem(key){
+    root.render(<MainPage element={<ItemPage id={key}/>}/>)
 }

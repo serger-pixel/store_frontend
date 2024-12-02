@@ -9,7 +9,7 @@ class ItemPreview extends React.Component{
 
     render(){
         return(
-        <div className="ItemPreview" onClick={()=>{selectItem(this)}}>
+        <div className="ItemPreview" onClick={()=>{selectItem(this.props.id)}}>
             <div>{this.props.name}</div>
             <div>{this.props.price}</div>
         </div>
