@@ -1,15 +1,19 @@
 import axios from "axios";
 
-const URL = "http://localhost:8080/images/post"
+const URL = "http://localhost:8080/images/"
 
 export async function saveImage(image) {
-    return await axios.post(URL, image, {
+    await axios.post(URL + "post", image, {
         headers: {
         'Content-Type': 'multipart/form-data'}
     }
 )
 }
 
-// export async function getItem(id) {
-//     return await axios.get('${URL}'/'${id}')
-// }
+export async function getImage(id, el) {
+    await axios.get(URL+"get/"+id).then( function(response){
+        el.setState({
+            image: 'data:'+response.data.fileType+';base64,'+ response.data.bytes 
+        })
+    })
+}

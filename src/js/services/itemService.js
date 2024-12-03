@@ -3,6 +3,7 @@ import ItemPreview from "../components/ItemPreview";
 import { root } from "../..";
 import ItemPage from "../components/ItemPage";
 import MainPage from "../components/MainPage";
+import { getImage } from "./imageService";
 
 
 
@@ -20,9 +21,9 @@ export async function getItem(id, item) {
     await axios.get(URL + "/get/" + id).then(function(response){
         item.setState({
             props: response.data
-        }, ()=>{
         })
     })
+    await getImage(id, item);
 }
 
 export async function getAllItem(list) {

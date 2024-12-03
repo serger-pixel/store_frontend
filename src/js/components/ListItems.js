@@ -21,6 +21,7 @@ class ListItems extends React.Component{
                     price={this.state.items[ind].price}
                     valute={this.state.items[ind].valute}
                     id={this.state.items[ind].id}
+                    image={this.state.items[ind].idImage}
                     />
                 )
             }
