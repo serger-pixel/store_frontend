@@ -1,9 +1,7 @@
-function userComp(){
+function userComp(props){
     return(
         <div>
-            <div id="avatar"></div>
-            <div id="wishList"></div>
-            <button id="toShop" >Back to shop</button>
+            <div>{userComp}</div>
         </div>
     );
 }
