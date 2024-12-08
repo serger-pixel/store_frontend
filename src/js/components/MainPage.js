@@ -12,7 +12,7 @@ class MainPage extends React.Component{
     }
 
     render()
-    {  
+    {  console.log(document.cookie)
         return (
             <div>
                 <div id="eventDiv"></div>

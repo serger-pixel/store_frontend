@@ -22,16 +22,17 @@ export async function getItem(id, item) {
         item.setState({
             props: response.data
         })
-    })
+    });
     await getImage(id, item);
 }
 
 export async function getAllItem(list) {
     await axios.get(URL + "/get/all").then(function(response){
+        console.log(response)
         list.setState({
             items: response.data
         }, ()=>{
-            console.log(response.data)
+            console.log(response.data);
         })
     })
 }
