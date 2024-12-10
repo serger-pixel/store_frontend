@@ -1,25 +1,37 @@
 import React from "react";
 import { useState } from 'react';
-import { emptyLogOrPas, keyEx } from "../services/userService";
+import { emptyLogOrPas, enterTitle, keyEx, regTitle, regUser, typeEnt, typeReg } from "../services/userService";
 import { getUser } from "../services/userService";
-import userComp from "./UserComponent";
 import MainPage from "./MainPage";
 import ListItems from "./ListItems";
 import { backToMain } from "../services/mainPageService";
+import { cookieToObject, keyAvatar, keyFavorites, keyUser } from "../services/cookieService";
 
-class EnterPage extends React.Component{
+class EnterRegPage extends React.Component{
     constructor(props){
         super(props)
-        this.state={data: {}, error: ""} 
+        this.state={data: {}, error: ""}
+        if (props.type === typeEnt){
+            this.title = enterTitle
+        }
+        else{
+            this.title = regTitle;
+        }
     }
     render(){
-        if (this.state.error == "" && 
-            Object.keys(this.state.data).length !== 0){
+        if (this.state.error === "" && 
+            Object.keys(this.state.data).length !== 0 &&
+            (this.props.type === typeEnt ||
+            this.props.type === typeReg)){
+            document.cookie= keyUser + "=" + this.state.data.login;
+            document.cookie= keyFavorites + "=" + this.state.data.favorites;
+            document.cookie = keyAvatar + "=" + this.state.data.idImage;
             backToMain();
         }
         return(
         <div id="enterDiv">
             <br></br>
+            <label for="entForm">{this.title}</label>
             <form id="entForm" method="post">
                 <input type="text" id="login"/>
                 <label for="login">Логин</label><br/>
@@ -31,11 +43,14 @@ class EnterPage extends React.Component{
                     let login = document.getElementById("login").value;
                     let password = document.getElementById("password").value;
                     if (login !=="" && password !== ""){
-                        getUser(login, password, this)
-                        if (this.state.error == "" && 
-                            Object.keys(this.state.data).length !== 0){
-                            document.cookie ="user=" + this.state.data.login;
-                            backToMain();
+                        if(this.props.type == typeEnt){
+                            getUser(login, password, this)
+                        }
+                        else{
+                            regUser({
+                                login: login,
+                                password: password
+                            }, this)
                         }
                         
                     }
@@ -44,7 +59,7 @@ class EnterPage extends React.Component{
                         div.innerHTML = emptyLogOrPas;
                     }
                 }
-                }>Войти</button>
+                }>{this.title}</button>
                 <div id="error">{this.state.error}</div>
             </form>
         </div>
@@ -52,4 +67,4 @@ class EnterPage extends React.Component{
     }
 }
 
-export default EnterPage;
+export default EnterRegPage;

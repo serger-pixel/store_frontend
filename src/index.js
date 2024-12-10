@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import { saveItem } from './js/services/itemService';
+import { saveItem, typeMain } from './js/services/itemService';
 import './index.css';
-import  "./css/styles.css";
 import MainPage from './js/components/MainPage';
 import ListItems from './js/components/ListItems';
-import Registration from './js/components/Registration';
-import EnterPage from './js/components/EnterPage';
+import FileUploader from './js/components/FileUploader';
 
 export const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<EnterPage/>)
+//root.render(<MainPage element={<ListItems/>}/>)
+document.cookie = "user="
+document.cookie = "favorites="
+document.cookie ="avatar="
+console.log(document.cookie);
+root.render(<MainPage element={<ListItems type ={typeMain}/>}/>)
+//root.render(<FileUploader/>)
 

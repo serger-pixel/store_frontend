@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/ItemPreview.css"
+import "../../css/productPreview.css"
 import { selectItem } from "../services/itemService";
 import { getImage } from "../services/imageService";
 
@@ -12,10 +12,10 @@ class ItemPreview extends React.Component{
 
     render(){
         return(
-        <div className="ItemPreview" onClick={()=>{selectItem(this.props.id)}}>
+        <div className="productPreview" onClick={()=>{selectItem(this.props.id)}}>
             <div>{this.props.name}</div>
-            <img src ={this.state.image} className="ItemPreviewImage"/>
-             <div className="ItemPreviewImage">{this.props.price} {this.props.valute}</div>
+            <img src ={this.state.image} className="productPreviewImage"/>
+             <div className="productPreviewImage">{this.props.price} {this.props.valute}</div>
         </div>
     )}
 }

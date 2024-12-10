@@ -1,16 +1,22 @@
 import React from "react";
 import ItemPreview from "./ItemPreview";
 import { useState } from 'react';
-import {getAllItem} from "../services/itemService.js"
+import {getAllItem, getFavorites, typeMain} from "../services/itemService.js"
 import { selectItem } from "../services/itemService.js";
-
+import { cookieToObject } from "../services/cookieService.js";
 
 class ListItems extends React.Component{
     constructor(props)
     {    
         super(props);
         this.state={items: []};
-        getAllItem(this)
+        if(props.type === typeMain){
+            getAllItem(this)
+        }
+        else{
+            console.log(cookieToObject()["favorites"]);
+            getFavorites(this, cookieToObject()["favorites"])
+        }
     }
         render(){
             let _list = [];

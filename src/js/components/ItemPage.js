@@ -1,24 +1,58 @@
 import React from "react";
+import "../../css/productPage.css"
+import { addDeleteFavorite, addFavoriteMess, delFavoriteMess} from "../services/userService";
 import { getItem } from "../services/itemService";
 import { backToMain } from "../services/mainPageService";
+import { cookieToObject } from "../services/cookieService";
+import { userAreNotIden } from "../services/userService";
 
 class ItemPage extends React.Component{
     constructor(props){
         super(props)
-        this.state ={props: {}, image: ""}
+        let cookie = cookieToObject();
+        let message;
+        console.log(cookie["favorites"]);
+        if (cookie["favorites"].includes(props.id.toString())){
+            message = delFavoriteMess;
+            console.log(message)
+        }
+        else{
+            message = addFavoriteMess;
+        }
+        this.state ={props: {}, image: "", buttonText: message}
         getItem(props.id, this)
     }
 
     render(){
         return(
         <div>
-            <div>{this.state.props.name}</div>
-            <div>{this.state.props.price} {this.state.props.valute}</div>
-            <div>{this.state.props.description}</div>
-            <img src = {this.state.image}/>
-            <button type="button" onClick={backToMain}>
-                Назад
-            </button>
+            <img className="productImage" src = {this.state.image}/>
+            <div className="productTextAndPrice">
+                <div>{this.state.props.name}</div>
+                <div>{this.state.props.price} {this.state.props.valute}</div>
+            </div>
+            <div className="productDescription">{this.state.props.description}</div>
+            <div className="buttonsBLock">
+                <button type="button" onClick={backToMain}>
+                    Назад
+                </button>
+                <br/>
+                <br/>
+                <br/>
+                <button type="button" onClick={
+                    ()=>{
+                        let cookie = cookieToObject();
+                        if (cookie["user"].length === 0){
+                            let div = document.getElementById("error")
+                            div.innerHTML = userAreNotIden;
+                        }
+                        else{
+                            addDeleteFavorite(cookie, this)
+                        }
+                    }
+                }>{this.state.buttonText}</button>
+                <div id="error"></div>
+            </div>
         </div>
     )}
 }

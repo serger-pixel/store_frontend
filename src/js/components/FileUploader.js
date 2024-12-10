@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { saveImage } from '../services/imageService';
+import { getImage, saveImage } from '../services/imageService';
 
-function FileUploader(){
+function FileUploader(props){
       const [file, setFile] = useState(null);
       return (
         <div>
@@ -15,7 +15,7 @@ function FileUploader(){
               ()=>{
                 let data = new FormData;
                 data.append("file",file);
-                saveImage(data)
+                saveImage(data, props.element)
               }
             }>CLICK</button>
         </div>
