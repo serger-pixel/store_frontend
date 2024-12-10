@@ -2,8 +2,14 @@ import axios from "axios";
 import { setImage } from "./userService";
 import { cookieToObject } from "./cookieService";
 
+/**
+ * Путь для запроса
+ */
 const URL = "http://localhost:8080/images/"
 
+/**
+ * Отправка запроса для сохранения изображения в базе данных
+ */
 export async function saveImage(image, profil) {
     await axios.post(URL + "post", image, {
         headers: {
@@ -15,6 +21,9 @@ export async function saveImage(image, profil) {
     })
 }
 
+/**
+ * Отправка запроса для получения изображения из базы данных
+ */
 export async function getImage(id, el) {
     await axios.get(URL+"get/"+id).then( function(response){
         el.setState({

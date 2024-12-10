@@ -11,12 +11,22 @@ import { cookieToObject, keyAvatar, keyFavorites, keyUser } from "../services/co
 import "../../css/user.css"
 import "../../css/mainPage.css"
 import Profile from "./Profile.js";
+import { getTimeCnt } from "../services/mainPageService.js";
 
+/**
+ * 
+ */
 class MainPage extends React.Component{ 
+    /**
+     * 
+     */
     constructor(props){
         super(props);
     }
 
+    /**
+     * 
+     */
     render(){
         let cookie = cookieToObject();
         let elementInUser = <div>
@@ -61,8 +71,8 @@ class MainPage extends React.Component{
                 <div className="userPreview">
                     {elementInUser}
                 </div>
-                <div id="clockPlace">10.11.24</div>
-                <div id="counterPlace">0</div>
+                <div id="clockPlace"></div>
+                <div id="counterPlace"></div>
                 <button id="exitButton">Exit</button>
             </div>
             );

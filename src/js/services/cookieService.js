@@ -1,8 +1,20 @@
+/**
+ * Ключ логина user
+ */
 export const keyUser = "user";
+/**
+ * Ключ списка избранных товаров
+ */
 export const keyFavorites = "favorites";
+/**
+ * Ключ аватара пользователя
+ */
 export const keyAvatar = "avatar"
 
-
+/**
+ * Преобразование cookie в объект
+ * @return объект, содержащий данные cookie
+ */
 export function cookieToObject(){
     let data = document.cookie.split(";");
     let user = "";

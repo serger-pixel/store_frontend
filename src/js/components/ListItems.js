@@ -5,7 +5,15 @@ import {getAllItem, getFavorites, typeMain} from "../services/itemService.js"
 import { selectItem } from "../services/itemService.js";
 import { cookieToObject } from "../services/cookieService.js";
 
+/**
+ * Класс списка товаров
+ */
 class ListItems extends React.Component{
+    /**
+     * Конструктор
+     * @param
+     * props - тип списка(type)
+     */
     constructor(props)
     {    
         super(props);
@@ -14,27 +22,31 @@ class ListItems extends React.Component{
             getAllItem(this)
         }
         else{
-            console.log(cookieToObject()["favorites"]);
             getFavorites(this, cookieToObject()["favorites"])
         }
     }
-        render(){
-            let _list = [];
-            for(var ind in this.state.items){
-                _list.push(
-                    <ItemPreview 
-                    name={this.state.items[ind].name}
-                    price={this.state.items[ind].price}
-                    valute={this.state.items[ind].valute}
-                    id={this.state.items[ind].id}
-                    image={this.state.items[ind].idImage}
-                    />
-                )
-            }
-            return(
-                <div>{_list}</div>
+
+    /**
+     * Отображение списка товаров
+     * @return компонент со списком товаров
+     */
+    render(){
+        let _list = [];
+        for(var ind in this.state.items){
+            _list.push(
+                <ItemPreview 
+                name={this.state.items[ind].name}
+                price={this.state.items[ind].price}
+                valute={this.state.items[ind].valute}
+                id={this.state.items[ind].id}
+                image={this.state.items[ind].idImage}
+                />
             )
         }
+        return(
+            <div>{_list}</div>
+        )
+    }
 }
 
 export default ListItems;

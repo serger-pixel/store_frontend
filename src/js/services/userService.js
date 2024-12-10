@@ -5,18 +5,64 @@ import { useState } from "react";
 import { cookieToObject, keyAvatar, keyFavorites } from "./cookieService.js";
 import { getImage } from "./imageService.js";
 
+/**
+ * Путь для запроса
+ */
 const URL = "http://localhost:8080/users";
+
+/**
+ * Параметр message для поиска соответствующего значения в response.data
+ */
 export const keyEx = "message";
+
+/**
+ * Сообщение об ошибке при регестрации или входе
+ */
 export const emptyLogOrPas = "Пароль или логин не введены"
+
+/**
+ * Сообщение об ошибке при попытке не авторизированного пользователя добавить товар в избранное
+ */
 export const userAreNotIden = "Чтобы добавлять товары необходимо зайти в аккаунт"
+
+/**
+ * Тип страницы регистрации
+ */
 export const typeReg = "Reg";
+
+/**
+ * Тип страницы входа
+ */
 export const typeEnt = "Ent";
+
+/**
+ * Заголовок страницы входа
+ */
 export const enterTitle = "Вход";
+
+/**
+ * Заголовок страницы регистрации
+ */
 export const regTitle = "Регистрация";
+
+/**
+ * Надпись на кнопке добавления товара в избранное
+ */
 export const addFavoriteMess = "Добавить в избарнное";
+
+/**
+ * Надпись на кнопке удаления товара из избранного
+ */
 export const delFavoriteMess = "Удалить из избранного";
+
+/**
+ * Флаг отсутствия изображения
+ */
 export const notImage = -1
 
+/**
+ * Отправка запроса добавления пользователя в базу данных
+ */
 export async function regUser(user, reg) {
     await axios.post(URL + "/reg", user, {
         headers: {
@@ -28,6 +74,9 @@ export async function regUser(user, reg) {
 
 }
 
+/**
+ * Отправка запроса получения пользователя из базы данных
+ */
 export async function getUser(login, password, enter){
     await axios.get(URL + "/signin" + "/" + login + "/" + password)
     .then(function(response){
@@ -35,6 +84,9 @@ export async function getUser(login, password, enter){
     }); 
 }
 
+/**
+ * Изменение состояния в соответствии с запросом
+ */
 async function responseToRequest(response, el){
     if (response.data.hasOwnProperty(keyEx)){
         el.setState({
@@ -50,6 +102,9 @@ async function responseToRequest(response, el){
     }
 }
 
+/**
+ * Отправка запроса для добавления или удаления товара из списка избранного
+ */
 export async function addDeleteFavorite(cookie, product){
     if (!cookie["favorites"].includes(product.props.id.toString())){
         await axios.put(URL + "/" + cookie["user"]+ "/take/product/" + product.props.id)
@@ -77,6 +132,9 @@ export async function addDeleteFavorite(cookie, product){
     }
 }
 
+/**
+ * Отправка запроса для закрепления изображения (аватара) за пользователем
+ */
 export async function setImage(imageId, profil) {
     axios.put(URL + "/" + profil.props.name + 
         "/set/product/image/" + imageId)

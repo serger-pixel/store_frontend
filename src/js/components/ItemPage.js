@@ -6,7 +6,16 @@ import { backToMain } from "../services/mainPageService";
 import { cookieToObject } from "../services/cookieService";
 import { userAreNotIden } from "../services/userService";
 
+/**
+ * Класс страницы товара
+ */
 class ItemPage extends React.Component{
+
+    /**
+     * Конструктор
+     * @param
+     * props - id товара
+     */
     constructor(props){
         super(props)
         let cookie = cookieToObject();
@@ -23,6 +32,10 @@ class ItemPage extends React.Component{
         getItem(props.id, this)
     }
 
+    /**
+     * Отображение страницы товара
+     * @return компонент со страницей товара
+     */
     render(){
         return(
         <div>

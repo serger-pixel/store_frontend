@@ -8,7 +8,16 @@ import { cookieToObject } from "../services/cookieService";
 import { notImage } from "../services/userService";
 import { getImage } from "../services/imageService";
 
+/**
+ * Класс профиля пользователя
+ */
 class Profile extends React.Component{
+
+    /**
+     * Конструктор
+     * @param
+     * props - имя пользователя(name), id автара(image), список избранных товаров(element)
+     */
     constructor(props){
         super(props)
         let cookie = cookieToObject();
@@ -19,6 +28,10 @@ class Profile extends React.Component{
         }
     }
 
+    /**
+     * Отображение профиля пользователя
+     * @return компонент с профилем пользователя
+     */
     render(){
         return(
             <div>
@@ -33,7 +46,10 @@ class Profile extends React.Component{
                         )
                     }
                 }>Главная</button>
+                <div id="clockPlace"></div>
+                <div id="counterPlace"></div>
             </div>
+            
         )
     }
 }

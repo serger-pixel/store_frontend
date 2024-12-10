@@ -7,7 +7,16 @@ import ListItems from "./ListItems";
 import { backToMain } from "../services/mainPageService";
 import { cookieToObject, keyAvatar, keyFavorites, keyUser } from "../services/cookieService";
 
+/**
+ * Класс страницы входа/регистрации
+ */
 class EnterRegPage extends React.Component{
+
+    /**
+     * Конструктор
+     * @param
+     * props - тип страницы(type)
+     */
     constructor(props){
         super(props)
         this.state={data: {}, error: ""}
@@ -18,6 +27,11 @@ class EnterRegPage extends React.Component{
             this.title = regTitle;
         }
     }
+
+    /**
+     * Отображение страницы
+     * @return страницу входа или регистрации в зависимости от типа
+     */
     render(){
         if (this.state.error === "" && 
             Object.keys(this.state.data).length !== 0 &&
@@ -61,6 +75,8 @@ class EnterRegPage extends React.Component{
                 }
                 }>{this.title}</button>
                 <div id="error">{this.state.error}</div>
+                <div id="clockPlace"></div>
+                <div id="counterPlace"></div>
             </form>
         </div>
     );
