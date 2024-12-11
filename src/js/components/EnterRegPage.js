@@ -1,11 +1,10 @@
 import React from "react";
-import { useState } from 'react';
 import { emptyLogOrPas, enterTitle, keyEx, regTitle, regUser, typeEnt, typeReg } from "../services/userService";
 import { getUser } from "../services/userService";
-import MainPage from "./MainPage";
-import ListItems from "./ListItems";
 import { backToMain } from "../services/mainPageService";
 import { cookieToObject, keyAvatar, keyFavorites, keyUser } from "../services/cookieService";
+import Header from "./Header";
+import "../../css/regLog.css"
 
 /**
  * Класс страницы входа/регистрации
@@ -43,41 +42,39 @@ class EnterRegPage extends React.Component{
             backToMain();
         }
         return(
-        <div id="enterDiv">
-            <br></br>
-            <label for="entForm">{this.title}</label>
-            <form id="entForm" method="post">
-                <input type="text" id="login"/>
-                <label for="login">Логин</label><br/>
-                <br/><br/>
-                <input type="text" id="password"/>
-                <label for="password">Пароль</label><br/>
-                <button type="button" onClick={()=>
-                {
-                    let login = document.getElementById("login").value;
-                    let password = document.getElementById("password").value;
-                    if (login !=="" && password !== ""){
-                        if(this.props.type == typeEnt){
-                            getUser(login, password, this)
+        <div>
+            <Header/>
+            <div className="enterRegTitle">{this.title}</div>
+            <input className="login" id="login"/>
+            <input className="password" type="password" id="password"/>
+            <div className="textToLogin">Логин</div>
+            <div className="textToPass">Пароль</div>
+            <div className="btn" onClick={
+                ()=>{
+                    {
+                        let login = document.getElementById("login").value;
+                        let password = document.getElementById("password").value;
+                        if (login !=="" && password !== ""){
+                            if(this.props.type == typeEnt){
+                                getUser(login, password, this)
+                            }
+                            else{
+                                regUser({
+                                    login: login,
+                                    password: password
+                                }, this)
+                            }
+                            
                         }
                         else{
-                            regUser({
-                                login: login,
-                                password: password
-                            }, this)
+                            console.log(emptyLogOrPas)
+                            let div = document.getElementById('regLogErr');
+                            div.innerHTML = emptyLogOrPas;
                         }
-                        
-                    }
-                    else{
-                        let div = document.getElementById('error');
-                        div.innerHTML = emptyLogOrPas;
-                    }
+                    } 
                 }
-                }>{this.title}</button>
-                <div id="error">{this.state.error}</div>
-                <div id="clockPlace"></div>
-                <div id="counterPlace"></div>
-            </form>
+            }>{this.title}</div>
+            <div className="regLogErr" id="regLogErr">{this.state.error}</div>
         </div>
     );
     }

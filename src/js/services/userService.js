@@ -10,6 +10,14 @@ import { getImage } from "./imageService.js";
  */
 const URL = "http://localhost:8080/users";
 
+const usernameRegex = /^[A-Za-z]+$/;
+
+const passwordRegex = /^[A-Za-z0-9]{6,20}$/;
+
+const passwordErr = "Пароль должен состоять из букв и цифр, длина 6-20 символов";
+
+const logErr = "Логин должен состоять из букв, длина 3-20 символов"
+
 /**
  * Параметр message для поиска соответствующего значения в response.data
  */
@@ -48,7 +56,7 @@ export const regTitle = "Регистрация";
 /**
  * Надпись на кнопке добавления товара в избранное
  */
-export const addFavoriteMess = "Добавить в избарнное";
+export const addFavoriteMess = "Добавить в избранное";
 
 /**
  * Надпись на кнопке удаления товара из избранного

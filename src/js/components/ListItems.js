@@ -4,6 +4,7 @@ import { useState } from 'react';
 import {getAllItem, getFavorites, typeMain} from "../services/itemService.js"
 import { selectItem } from "../services/itemService.js";
 import { cookieToObject } from "../services/cookieService.js";
+import "../../css/listProduct.css"
 
 /**
  * Класс списка товаров
@@ -44,7 +45,7 @@ class ListItems extends React.Component{
             )
         }
         return(
-            <div>{_list}</div>
+            <div className="listProduct">{_list}</div>
         )
     }
 }

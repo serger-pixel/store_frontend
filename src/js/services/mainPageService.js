@@ -31,6 +31,6 @@ export async function getTimeCnt(){
     .then(function(response){
         cnt = response.data;
     })
-    document.getElementById("clockPlace").innerHTML = time;
-    document.getElementById("counterPlace").innerHTML = cnt;
+    document.getElementById("time").innerHTML = time;
+    document.getElementById("cntUsers").innerHTML = cnt;
 } 

@@ -1,0 +1,47 @@
+.loginProfile{
+    position: absolute;
+    width: 100px;
+    height: 51px;
+    left: 43px;
+    top: 140px;
+    text-align: center;
+    background: rgb(196, 196, 196);
+}
+
+.imageProfile{
+    position: absolute;
+    width: 320px;
+    height: 326px;
+    left: 43px;
+    right: 1165px;
+    top: 234px;
+    bottom: 560px;
+    border-radius: 12px;
+}
+
+.listProduct{
+    position: absolute;
+    width: 600px;
+    height: 200px;
+    left: 300px;
+    top: 138px;
+}
+
+.favTitle{
+    position: absolute;
+    width: 100px;
+    height: 53px;
+    left: 650px;
+    top: 238px;
+    background: rgb(196, 196, 196);
+}
+
+.fileUplouder{
+    position: absolute;
+    width: 231px;
+    height: 60px;
+    left: 54px;
+    top: 631px;
+}
+
+

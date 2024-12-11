@@ -7,6 +7,8 @@ import { typeMain } from "../services/itemService";
 import { cookieToObject } from "../services/cookieService";
 import { notImage } from "../services/userService";
 import { getImage } from "../services/imageService";
+import Header from "./Header";
+import "../../css/profile.css"
 
 /**
  * Класс профиля пользователя
@@ -35,19 +37,12 @@ class Profile extends React.Component{
     render(){
         return(
             <div>
-                <div>Логин: {this.props.name}</div>
-                <img src={this.state.image}/>
-                <div>Списко желаемого:{this.props.element}</div>
-                <div>Загрузка аватара: <FileUploader element={this}/></div>
-                <button type="button" onClick={
-                    ()=>{
-                        root.render(
-                            <MainPage element={<ListItems type ={typeMain}/>}/>
-                        )
-                    }
-                }>Главная</button>
-                <div id="clockPlace"></div>
-                <div id="counterPlace"></div>
+                <Header/>
+                <div className="loginProfile">Логин: {this.props.name}</div>
+                <img className="imageProfile"src={this.state.image}/>
+                <div className="favTitle">Списко желаемого:</div>
+                <div className="listProduct">{this.props.element}</div>
+                <div className="fileUplouder">Загрузка аватара: <FileUploader element={this}/></div>
             </div>
             
         )

@@ -14,6 +14,5 @@ document.cookie = "favorites="
 document.cookie ="avatar="
 console.log(document.cookie);
 root.render(<MainPage element={<ListItems type ={typeMain}/>}/>)
-//root.render(<FileUploader/>)
 setInterval(getTimeCnt, 1000)
 
