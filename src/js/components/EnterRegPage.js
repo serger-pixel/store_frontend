@@ -54,31 +54,35 @@ class EnterRegPage extends React.Component{
                     {
                         let login = document.getElementById("login").value;
                         let password = document.getElementById("password").value;
-                        if (login !=="" && password !== "" &&
-                            usernameRegex.test(login) &&
-                            passwordRegex.test(password)
-                        ){
+                        let div = document.getElementById('regLogErr')
+                        if (login !=="" && password !== "")
+                        {
                             if(this.props.type == typeEnt){
                                 getUser(login, password, this)
                             }
                             else{
-                                regUser({
+                                if (usernameRegex.test(login) &&
+                                passwordRegex.test(password))
+                                {
+                                    regUser({
                                     login: login,
                                     password: password
                                 }, this)
+                                }
+                                else{
+                                    if (!usernameRegex.test(login)){
+                                        div.innerHTML = logErr;
+                                    }
+                                    else{
+                                        div.innerHTML = passwordErr;
+                                    }
+                                }
                             }
                             
                         }
                         else{
-                            let div = document.getElementById('regLogErr')
                             if (login === "" || password === ""){
                                 div.innerHTML = emptyLogOrPas;
-                            }
-                            if (!usernameRegex.test(login)){
-                                div.innerHTML = logErr;
-                            }
-                            else{
-                                div.innerHTML = passwordErr;
                             }
                         }
                     } 

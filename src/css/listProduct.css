@@ -1,12 +1,8 @@
 .listProduct{
     position: absolute;
     width: 900px;
-    height: 60px;
-    left: 4.03%;
-    right: 4.03%;
+    height: 600px;
     top: 8.82%;
-    bottom: 83.73%;
-    text-align: center;
 }
 
 .productPreview{

@@ -7,6 +7,8 @@ import { cookieToObject } from "./cookieService";
  */
 const URL = "http://localhost:8080/images/"
 
+export const types =["jpeg", "png", "jpg"]
+
 /**
  * Отправка запроса для сохранения изображения в базе данных
  */
