@@ -17,7 +17,7 @@ export function backToMain(){
 }
 
 /**
- * 
+ * Отправка запроса для получения даты и времени и счётчика посещений
  */
 export async function getTimeCnt(){
     let time;

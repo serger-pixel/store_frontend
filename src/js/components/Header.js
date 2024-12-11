@@ -8,11 +8,25 @@ import { cookieToObject, keyAvatar, keyFavorites, keyUser } from "../services/co
 import Profile from "./Profile.js";
 import MainPage from "./MainPage.js";
 import "../../css/header.css"
+
+/**
+ * Класс-компонент заголовка страницы
+ */
 class Header extends React.Component{
+
+    /**
+     * Конструктор
+     * @param 
+     * props параметры
+     */
     constructor(props){
         super(props)
     }
 
+    /**
+     * Отображение заголовка
+     * @returns компонент заголовка
+     */
     render(){
         let cookie = cookieToObject();
         let elementInUser = <div class="signInUp">

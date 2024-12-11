@@ -3,18 +3,20 @@ import Header from "./Header.js";
 import "../../css/main.css"
 
 /**
- * 
+ * Класс-компонент главной страницы
  */
 class MainPage extends React.Component{ 
     /**
-     * 
+     * Конструктор
+     * @param
+     * props - список товаров
      */
     constructor(props){
         super(props);
     }
 
     /**
-     * 
+     * Отображение компонента главной страницы
      */
     render(){
         return (
