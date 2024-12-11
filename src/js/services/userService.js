@@ -10,13 +10,13 @@ import { getImage } from "./imageService.js";
  */
 const URL = "http://localhost:8080/users";
 
-const usernameRegex = /^[A-Za-z]+$/;
+export const usernameRegex = /^[A-Za-z]{3,20}$/;
 
-const passwordRegex = /^[A-Za-z0-9]{6,20}$/;
+export const passwordRegex = /^[A-Za-z0-9]{6,20}$/;
 
-const passwordErr = "Пароль должен состоять из букв и цифр, длина 6-20 символов";
+export const passwordErr = "Пароль должен состоять из букв и цифр, длина 6-20 символов";
 
-const logErr = "Логин должен состоять из букв, длина 3-20 символов"
+export const logErr = "Логин должен состоять из букв, длина 3-20 символов"
 
 /**
  * Параметр message для поиска соответствующего значения в response.data

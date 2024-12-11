@@ -1,10 +1,10 @@
 import React from "react";
-import { emptyLogOrPas, enterTitle, keyEx, regTitle, regUser, typeEnt, typeReg } from "../services/userService";
+import { emptyLogOrPas, enterTitle, keyEx, logErr, passwordErr, passwordRegex, regTitle, regUser, typeEnt, typeReg, usernameRegex } from "../services/userService";
 import { getUser } from "../services/userService";
 import { backToMain } from "../services/mainPageService";
 import { cookieToObject, keyAvatar, keyFavorites, keyUser } from "../services/cookieService";
 import Header from "./Header";
-import "../../css/regLog.css"
+import "../../css/regLog.css";
 
 /**
  * Класс страницы входа/регистрации
@@ -54,7 +54,10 @@ class EnterRegPage extends React.Component{
                     {
                         let login = document.getElementById("login").value;
                         let password = document.getElementById("password").value;
-                        if (login !=="" && password !== ""){
+                        if (login !=="" && password !== "" &&
+                            usernameRegex.test(login) &&
+                            passwordRegex.test(password)
+                        ){
                             if(this.props.type == typeEnt){
                                 getUser(login, password, this)
                             }
@@ -67,9 +70,16 @@ class EnterRegPage extends React.Component{
                             
                         }
                         else{
-                            console.log(emptyLogOrPas)
-                            let div = document.getElementById('regLogErr');
-                            div.innerHTML = emptyLogOrPas;
+                            let div = document.getElementById('regLogErr')
+                            if (login === "" || password === ""){
+                                div.innerHTML = emptyLogOrPas;
+                            }
+                            if (!usernameRegex.test(login)){
+                                div.innerHTML = logErr;
+                            }
+                            else{
+                                div.innerHTML = passwordErr;
+                            }
                         }
                     } 
                 }

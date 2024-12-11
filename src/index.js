@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { saveItem, typeMain } from './js/services/itemService';
-import './index.css';
 import MainPage from './js/components/MainPage';
 import ListItems from './js/components/ListItems';
-import FileUploader from './js/components/FileUploader';
 import { getTimeCnt } from './js/services/mainPageService';
 
 export const root = ReactDOM.createRoot(document.getElementById('root'));
