@@ -1,10 +1,12 @@
 import React from "react";
-import "../../css/listProduct.css"
+import "../../css/product.css"
 import { addDeleteFavorite, addFavoriteMess, delFavoriteMess} from "../services/userService";
-import { getItem } from "../services/itemService";
+import { getItem } from "../services/productService";
 import { backToMain } from "../services/mainPageService";
 import { cookieToObject } from "../services/cookieService";
 import { userAreNotIden } from "../services/userService";
+import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../../../node_modules/bootstrap/dist/js/bootstrap.js';
 
 /**
  * Класс страницы товара
@@ -37,27 +39,29 @@ class ItemPage extends React.Component{
      */
     render(){
         return(
-        <div>
-            <img className="productImage" src = {this.state.image}/>
-            <div className="productName">{this.state.props.name}</div>
-            <div className="productPrice">
-                {this.state.props.price} {this.state.props.valute}
+        <div class="card">
+            <img class="card-img-top" src = {this.state.image}/>
+            <div>
+                <div class="card-title">{this.state.props.name}</div>
+                <div className="productPrice">
+                    {this.state.props.price} {this.state.props.valute}
+                </div>
+                <div className="productTitle">Описание</div>
+                <div className="productDescription">{this.state.props.description}</div>
+                <div className="productActive" onClick={
+                    ()=>{
+                        let cookie = cookieToObject();
+                        if (cookie["user"].length === 0){
+                            let div = document.getElementById("productError")
+                            div.innerHTML = userAreNotIden;
+                        }
+                        else{
+                            addDeleteFavorite(cookie, this)
+                        }
+                    }
+                }>{this.state.buttonText}</div>
+                <div className="productError" id={"productError"}></div>
             </div>
-            <div className="productTitle">Описание</div>
-            <div className="productDescription">{this.state.props.description}</div>
-            <div className="productActive" onClick={
-                ()=>{
-                    let cookie = cookieToObject();
-                    if (cookie["user"].length === 0){
-                        let div = document.getElementById("productError")
-                        div.innerHTML = userAreNotIden;
-                    }
-                    else{
-                        addDeleteFavorite(cookie, this)
-                    }
-                }
-            }>{this.state.buttonText}</div>
-            <div className="productError" id={"productError"}></div>
         </div>
     )}
 }

@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import { saveItem, typeMain } from './js/services/itemService';
+import { saveItem, typeMain } from './js/services/productService';
 import MainPage from './js/components/MainPage';
-import ListItems from './js/components/ListItems';
+import ListProducts from './js/components/ListProducts';
 import { getTimeCnt } from './js/services/mainPageService';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../node_modules/bootstrap/dist/js/bootstrap.js';
+import { titleMain } from './js/services/productService.js';
 
+//корневой элемент
 export const root = ReactDOM.createRoot(document.getElementById('root'));
-//root.render(<MainPage element={<ListItems/>}/>)
+//root.render(<MainPage element={<ListProducts/>}/>)
 document.cookie = "user="
 document.cookie = "favorites="
 document.cookie ="avatar="
 console.log(document.cookie);
-root.render(<MainPage element={<ListItems type ={typeMain}/>}/>)
+root.render(<MainPage element={<ListProducts type ={typeMain} title={titleMain}/>}/>)
 setInterval(getTimeCnt, 1000)
 

@@ -1,0 +1,44 @@
+.card-img-top{
+    height: 200px;
+    width: 200px;
+    cursor: pointer
+}
+
+.card{
+    width: 200px;
+}
+
+.card-body{
+    width: 200px;
+    height:150px;
+    cursor: pointer
+}
+
+.card-footer{
+    height: 100px;
+    text-align: center;
+}
+
+.btn{
+    position: relative !important;
+    height: 60px !important;
+    top: 0px !important;
+    left:0px !important;
+    right: 0px !important;
+    bottom: 0px !important;
+}
+
+#ListProducts{
+    position: absolute; 
+    width: 900px; 
+    height: 600px;  
+    overflow-y: scroll;
+}
+
+#Products{
+    position: absolute; 
+    width: 900px; 
+    height: 600px;  
+    top: 70px;
+    left: 500px;
+}

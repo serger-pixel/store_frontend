@@ -1,68 +1,7 @@
-.enterRegTitle{
-    position: absolute;
-    width: 300px;
-    height: 26px;
-    left: 634px;
-    right: 481px;
-    top: 186px;
-    text-align: center;
-    background: rgb(196, 196, 196);
-}
-
-.login{
-    position: absolute;
-    width: 300px;
-    height: 26px;
-    left: 634px;
-    right: 481px;
-    top: 229px;
-    bottom: 927px;
-}
-
-.password{
-    /* Прямоугольник 17 */
-    position: absolute;
-    width: 300px;
-    height: 26px;
-    left: 634px;
-    right: 481px;
-    top: 300px;
-    bottom: 806px;
-}
-
-.textToLogin{
-    position: absolute;
-    width: 50px;
-    height: 47px;
-    left: 550px;
-    top: 229px;
-}
-
-.textToPass{
-    position: absolute;
-    width: 50px;
-    height: 47px;
-    left: 550px;
-    top: 300px;
-}
-
-.btn{
-    position: absolute;
-    width: 150px;
-    height: 26px;
-    left: 700px;
-    right: 481px;
-    top: 350px;
-    bottom: 573px;
-    text-align: center;
-    background: rgb(196, 196, 196);
-}
-
-.regLogErr{
-    position: absolute;
-    width: 535px;
-    height: 74px;
-    left: 700px;
-    top: 400px;
-    bottom: 573px;
+#validationForm{
+    position: relative;
+    top: 200px;
+    width: 400px;
+    margin:auto;
+    text-align: center
 }

@@ -1,8 +1,8 @@
 import axios from "axios";
 import { root } from "../..";
-import ListItems from "../components/ListItems";
+import ListProducts from "../components/ListProducts.js";
 import MainPage from "../components/MainPage";
-import { typeMain } from "./itemService";
+import { typeMain } from "./productService";
 
 /**
  * Путь для запроса
@@ -13,7 +13,7 @@ const URL = "http://localhost:8080/get/"
  * Возвращение на главную страницу
  */
 export function backToMain(){
-    root.render(<MainPage element={<ListItems type={typeMain}/>}/>)
+    root.render(<MainPage element={<ListProducts type={typeMain}/>}/>)
 }
 
 /**
@@ -31,6 +31,6 @@ export async function getTimeCnt(){
     .then(function(response){
         cnt = response.data;
     })
-    document.getElementById("time").innerHTML = time;
-    document.getElementById("cntUsers").innerHTML = cnt;
+    document.getElementById("timeNav").innerHTML = "Время:" + time;
+    document.getElementById("cntNav").innerHTML = "Кол-во посетителей: " + cnt;
 } 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import ItemPreview from "../components/ItemPreview";
+import ProductPreview from "../components/ProductPreview";
 import { root } from "../..";
 import ItemPage from "../components/ItemPage";
 import MainPage from "../components/MainPage";
@@ -21,6 +21,10 @@ export const typeMain = "main";
  * Тип списка избранных товаров для страницы пользователя
  */
 export const typeFavorites = "favorites"; 
+
+export const titleMain = "Товары";
+
+export const titleFavorites = "Список желаемого";
 
 /**
  * Отправка запроса для сохранения товара в базе данных
@@ -84,4 +88,14 @@ export async function getFavorites(list, favorites) {
  */
 export function selectItem(key){
     root.render(<MainPage element={<ItemPage id={key}/>}/>)
+}
+
+export function ObjectToProdPrev(obj){
+    return <ProductPreview 
+        name={obj.name}
+        price={obj.price}
+        valute={obj.valute}
+        id={obj.id}
+        image={obj.idImage}
+    />
 }

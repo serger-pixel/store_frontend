@@ -1,6 +1,8 @@
 import React from "react";
 import Header from "./Header.js";
-import "../../css/main.css"
+import NewsList from "./NewsList.js";
+import ListProducts from "./ListProducts.js";
+import { titleMain, typeMain } from "../services/productService.js";
 
 /**
  * Класс-компонент главной страницы
@@ -22,14 +24,9 @@ class MainPage extends React.Component{
         return (
             <div>
                 <Header/>
-                <div className="main">
-                    <div className="news">
-                        <div class="blockTitle">Новости</div>
-                    </div>
-                    <div className="products">
-                        <div class="blockTitle">Товары</div>
-                        {this.props.element}
-                    </div>
+                <div className="container">
+                    <ListProducts type ={typeMain} title={titleMain}/>
+                    <NewsList/>
                 </div>
             </div>
             );

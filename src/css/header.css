@@ -1,107 +1,19 @@
-.header{
+ #regOut{
     position: absolute;
-    width: 100%;
-    height: 60px;
-    left: 0%;
-    right: 0%;
-    top: 0%;
-    bottom: 0%;
-    background: rgba(252, 189, 63, 0.74);
-}
+    right: 0px;
+ }
 
-.mainButton{
+ #entryUser{
     position: absolute;
-    width: 121.12px;
-    height: 26px;
-    left: 4.81%;
-    right: 81.52%;
-    top: 20%;
-    bottom: 36.67%;
-    text-align: center;
-    border-radius: 12px;
-    background: rgb(196, 196, 196);
-}
+    right: 100px;
+ }
 
-.time{
+ #cntNav{
     position: absolute;
-    width: 220px;
-    height: 26px;
-    left: 20.88%;
-    right: 58.13%;
-    top: 20%;
-    bottom: 36.67%;
-    background: rgb(196, 196, 196);
-}
+    right: 400px;
+ }
 
-.cntUsers{
+ #timeNav{
     position: absolute;
-    width: 70px;
-    height: 26px;
-    left: 44.24%;
-    right: 47.86%;
-    top: 20%;
-    bottom: 36.67%;
-    background: rgb(196, 196, 196);
-}
-
-.signInUp{
-    position: absolute;
-    width: 332px;
-    height: 60px;
-    right: 0%;
-    top: 0%;
-    bottom: 0%;
-    background: rgb(196, 196, 196);
-}
-
-.signIn{
-    position: absolute;
-    width: 111.03px;
-    height: 26px;
-    left: 2.71%;
-    right: 63.85%;
-    top: 20%;
-    bottom: 36.67%;
-    border-radius: 12px;
-    text-align:  center;
-    background: rgba(252, 189, 63, 0.74);
-}
-
-.userButton{
-    position: absolute;
-    width: 111.03px;
-    height: 26px;
-    left: 2.71%;
-    right: 63.85%;
-    top: 20%;
-    bottom: 36.67%;
-    border-radius: 12px;
-    text-align:  center;
-    background: rgba(252, 189, 63, 0.74); 
-}
-
-.signUp{
-    position: absolute;
-    width: 180.56px;
-    height: 26px;
-    left: 42.47%;
-    right: 3.14%;
-    top: 20%;
-    bottom: 36.67%;
-    border-radius: 12px;
-    text-align:  center;
-    background: rgba(252, 189, 63, 0.74);
-}
-
-.outButton{
-    position: absolute;
-    width: 180.56px;
-    height: 26px;
-    left: 42.47%;
-    right: 3.14%;
-    top: 20%;
-    bottom: 36.67%;
-    border-radius: 12px;
-    text-align:  center;
-    background: rgba(252, 189, 63, 0.74);
-}
+    right: 600px;
+ }
