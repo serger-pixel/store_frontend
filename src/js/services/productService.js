@@ -4,7 +4,9 @@ import { root } from "../..";
 import ItemPage from "../components/ItemPage";
 import MainPage from "../components/MainPage";
 import { getImage } from "./imageService";
-import { keyFavorites } from "./cookieService";
+import { cookieToObject, keyFavorites } from "./cookieService";
+import Profile from "../components/Profile";
+import ListProducts from "../components/ListProducts";
 
 
 /**
@@ -24,7 +26,7 @@ export const typeFavorites = "favorites";
 
 export const titleMain = "Товары";
 
-export const titleFavorites = "Список желаемого";
+export const titleFavorites = "Список избранного";
 
 /**
  * Отправка запроса для сохранения товара в базе данных
@@ -67,6 +69,7 @@ export async function getAllItem(list) {
  */
 export async function getFavorites(list, favorites) {
     let items = [];
+    let cookie = cookieToObject();
     let ind = favorites.indexOf("");
     if (ind !== -1){
         favorites.splice(favorites.indexOf("") , 1)
@@ -90,12 +93,14 @@ export function selectItem(key){
     root.render(<MainPage element={<ItemPage id={key}/>}/>)
 }
 
-export function ObjectToProdPrev(obj){
+export function ObjectToProdPrev(obj, list, type){
     return <ProductPreview 
         name={obj.name}
         price={obj.price}
         valute={obj.valute}
         id={obj.id}
         image={obj.idImage}
+        list = {list}
+        type = {type}
     />
 }

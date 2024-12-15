@@ -1,9 +1,9 @@
-import {getItem, typeFavorites, typeMain} from "../services/productService.js"
+import {getItem, titleFavorites, typeFavorites, typeMain} from "../services/productService.js"
 import ListProducts from "./ListProducts.js"
 import React from "react";
 import { root } from "../../index.js";
 import EnterRegPage from "./EnterRegPage.js";
-import { typeEnt, typeReg } from "../services/userService.js";
+import { enterTitle, regTitle, titleEnt, titleReg, typeEnt, typeReg } from "../services/userService.js";
 import { cookieToObject, keyAvatar, keyFavorites, keyUser } from "../services/cookieService.js";
 import Profile from "./Profile.js";
 import MainPage from "./MainPage.js";
@@ -29,64 +29,18 @@ class Header extends React.Component{
      * @returns компонент заголовка
      */
     render(){
-    //     let cookie = cookieToObject();
-    //     let elementInUser = <div className="signInUp">
-    //         <div className="signIn" onClick={
-    //             ()=>{
-    //                root.render(<EnterRegPage type={typeEnt}/>) 
-    //             }
-    //         }>Вход</div>
-    //         <div className="signUp" onClick={
-    //             ()=>{
-    //                 root.render(<EnterRegPage type={typeReg}/>)
-    //             }
-    //         }>Регистранция</div>
-    //     </div>
-    //     if (cookie["user"].length !== 0){
-    //         elementInUser = <div className="signInUp">
-    //             <div className="userButton" onClick={
-    //                 ()=>{
-    //                     root.render(<Profile 
-    //                         element={<ListProducts type={typeFavorites}/>}
-    //                         name={cookie["user"]
-    //                         }
-    //                         />)
-    //                 }
-    //             }>{cookie["user"]}</div>
-    //             <div className="outButton" onClick={
-    //                 ()=>{
-                    //     document.cookie = keyUser + "=";
-                    //     document.cookie = keyFavorites + "=";
-                    //     document.cookie = keyAvatar + "="
-                    //     root.render(<MainPage element={<ListProducts type={typeMain}/>}/>)
-                    // }
-    //             }>Выйти</div>
-    //         </div>
-    //     }
-    //     return(
-    //         <div className="header">
-    //             <div className="mainButton" onClick={
-    //                 ()=>{
-    //                     root.render(<MainPage element={<ListProducts type ={typeMain}/>}/>)
-    //                 }
-    //             }>Главная</div>
-    //             <div className="time" id="time"></div>
-    //             <div className="cntUsers" id="cntUsers"></div>
-    //             {elementInUser}
-    //         </div>
-    //     )
     let cookie = cookieToObject();
     let entryUser;
     let regOut;
     if (cookie["user"].length === 0){
         entryUser = <a className="nav-link" href="#" id="entryUser" onClick={
             ()=>{
-                root.render(<EnterRegPage type={typeEnt}/>)
+                root.render(<EnterRegPage type={typeEnt} btnText={enterTitle} title={titleEnt}/>)
             }
         }>Вход</a>
         regOut = <a className="nav-link" href="#" id="regOut" onClick={
             ()=>{
-                root.render(<EnterRegPage type={typeReg}/>)
+                root.render(<EnterRegPage type={typeReg} btnText={regTitle} title={titleReg}/>)
             }
         }>Регистрация</a>
     }
@@ -94,7 +48,7 @@ class Header extends React.Component{
         entryUser =  <a className="nav-link" href="#" id="entryUser" onClick={
             ()=>{
                 root.render(<Profile 
-                    element={<ListProducts type={typeFavorites}/>}
+                    element={<ListProducts type={typeFavorites} title={titleFavorites}/>}
                     name={cookie["user"]
                     }
                 />)
@@ -104,7 +58,7 @@ class Header extends React.Component{
             ()=>{
                 document.cookie = keyUser + "=";
                 document.cookie = keyFavorites + "=";
-                document.cookie = keyAvatar + "="
+                document.cookie = keyAvatar + "=";
                 root.render(<MainPage element={<ListProducts type={typeMain}
                 title ={titleMain}/>}/>)
             }

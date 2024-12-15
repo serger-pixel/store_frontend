@@ -36,13 +36,14 @@ class Profile extends React.Component{
      */
     render(){
         return(
-            <div>
+            <div className="conatiner" id="profile">
                 <Header/>
-                <div className="loginProfile">Логин: {this.props.name}</div>
-                <img className="imageProfile"src={this.state.image}/>
-                <div className="favTitle">Списко желаемого:</div>
-                <div className="listProduct">{this.props.element}</div>
-                <div className="fileUplouder">Загрузка аватара: <FileUploader element={this}/></div>
+                <div className="container" id="miniProfile">
+                    <img id="imageProfile" src={this.state.image}/>
+                    <h1 className="display-5" id="loginProfile">{this.props.name}</h1>
+                </div>
+                <div id="imageUplouder">Загрузка аватара: <FileUploader element={this}/></div>
+                <div>{this.props.element}</div>
             </div>
             
         )

@@ -19,14 +19,6 @@
     text-align: center;
 }
 
-.btn{
-    position: relative !important;
-    height: 60px !important;
-    top: 0px !important;
-    left:0px !important;
-    right: 0px !important;
-    bottom: 0px !important;
-}
 
 #ListProducts{
     position: absolute; 
