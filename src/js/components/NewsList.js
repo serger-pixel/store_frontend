@@ -7,7 +7,7 @@ class NewsList extends React.Component{
     constructor(props){
         super(props);
         this.state = {news: []};
-        getNews(this);
+        // getNews(this);
     }
     render(){
         let list = [];
