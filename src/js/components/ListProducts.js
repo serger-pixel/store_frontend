@@ -16,7 +16,7 @@ class ListProducts extends React.Component{
     constructor(props)
     {    
         super(props);
-        this.state={items: []};
+        this.state={items: [], update: ""};
         if(props.type === typeMain){
             getAllItem(this)
         }
@@ -30,7 +30,14 @@ class ListProducts extends React.Component{
      * @return компонент со списком товаров
      */
     render(){
-        console.log(this.state.items.length)
+        if (this.state.items.length === 0){
+            return(
+                <div className="container" id="Products">
+                    <h1 className="display-2">{this.props.title}</h1>
+                    <h1 className="display-5" id="noProducts">Здесь ничего нет</h1>
+                </div>
+            )
+        }
         let list = [];
         for(let ind = 0; ind < this.state.items.length; ind+=3){
             let row;
@@ -40,13 +47,13 @@ class ListProducts extends React.Component{
                 console.log(this.state.items[ind+2]);
                 row = <div class="row">
                     <div class="col-sm-3 mb-4 mb-sm-0">
-                        {ObjectToProdPrev(this.state.items[ind])}
+                        {ObjectToProdPrev(this.state.items[ind], this, this.props.type)}
                     </div>
                     <div class="col-sm-3 mb-3">
-                        {ObjectToProdPrev(this.state.items[ind+1])}
+                        {ObjectToProdPrev(this.state.items[ind+1], this, this.props.type)}
                     </div>
                     <div class="col-sm-3 mb-3">
-                        {ObjectToProdPrev(this.state.items[ind+2])}
+                        {ObjectToProdPrev(this.state.items[ind+2], this, this.props.type)}
                     </div>
                 </div>
                 result = true;
@@ -54,10 +61,10 @@ class ListProducts extends React.Component{
             if(ind + 1 < this.state.items.length && !result){
                 row = <div class="row">
                     <div class="col-sm-3 mb-3">
-                        {ObjectToProdPrev(this.state.items[ind])}
+                        {ObjectToProdPrev(this.state.items[ind], this, this.props.type)}
                     </div>
                     <div class="col-sm-3 mb-3">
-                        {ObjectToProdPrev(this.state.items[ind+1])}
+                        {ObjectToProdPrev(this.state.items[ind+1], this, this.props.type)}
                     </div>
                 </div>
                 result = true;
@@ -65,7 +72,7 @@ class ListProducts extends React.Component{
             if(!result){
                 row = <div class="row">
                         <div class="col-sm-2 mb-3 mb-sm-0">
-                            {ObjectToProdPrev(this.state.items[ind])}
+                            {ObjectToProdPrev(this.state.items[ind], this, this.props.type)}
                         </div>
                     </div>
             }
@@ -73,7 +80,7 @@ class ListProducts extends React.Component{
         }
         return(
             <div className="container" id="Products">
-                <h1 class="display-2">{this.props.title}</h1>
+                <h1 className="display-2">{this.props.title}</h1>
                 <div className="container" id="ListProducts">
                     {list}
                 </div>

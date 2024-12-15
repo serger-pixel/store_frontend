@@ -1,6 +1,6 @@
 import axios from "axios";
 import { setImage } from "./userService";
-import { cookieToObject } from "./cookieService";
+import { cookieToObject, keyAvatar } from "./cookieService";
 
 /**
  * Путь для запроса
@@ -19,7 +19,7 @@ export async function saveImage(image, profil) {
     })
     .then(function(response){
         setImage(response.data.id, profil);
-        document.cookie = response.data.id;
+        document.cookie = keyAvatar + "=" + response.data.id;
     })
 }
 

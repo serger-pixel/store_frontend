@@ -4,6 +4,9 @@ import MainPage from "../components/MainPage.js";
 import { useState } from "react";
 import { cookieToObject, keyAvatar, keyFavorites } from "./cookieService.js";
 import { getImage } from "./imageService.js";
+import Profile from "../components/Profile.js";
+import ListProducts from "../components/ListProducts.js";
+import { titleFavorites, typeFavorites } from "./productService.js";
 
 /**
  * Путь для запроса
@@ -16,8 +19,11 @@ export const passwordRegex = /^[A-Za-z0-9]{6,20}$/;
 
 export const passwordErr = "Пароль должен состоять из букв и цифр, длина 6-20 символов";
 
-export const logErr = "Логин должен состоять из букв, длина 3-20 символов"
+export const logErr = "Логин должен состоять из букв, длина 3-20 символов";
 
+export const titleEnt = "Вход в аккаунт";
+
+export const titleReg = "Регистрация аккаунта";
 /**
  * Параметр message для поиска соответствующего значения в response.data
  */
@@ -66,7 +72,7 @@ export const delFavoriteMess = "Удалить из избранного";
 /**
  * Флаг отсутствия изображения
  */
-export const notImage = -1
+export const notImage = 17
 
 /**
  * Отправка запроса добавления пользователя в базу данных
@@ -130,12 +136,27 @@ export async function addDeleteFavorite(cookie, product){
         await axios.delete(URL + "/"+ cookie["user"]+ "/delete/product/" + product.props.id)
         .then(function(response){
             let localMass = cookie["favorites"];
+            if (localMass.indexOf("") !== -1){
+                localMass.splice(localMass.indexOf(""), 1)
+            }
             const index = localMass.indexOf(product.props.id.toString());
             localMass.splice(index, 1);
             document.cookie=keyFavorites + "=" + localMass.toString();
             product.setState({
                 buttonText: addFavoriteMess
             })
+            if (product.props.type === typeFavorites){
+                let localItems = []
+                let items = product.props.list.state.items;
+                for(let i = 0; i < items.length; i++){
+                    if (items[i].id !== product.props.id){
+                        localItems.push(items[i])
+                    }
+                }
+                product.props.list.setState({
+                    items: localItems
+                }) 
+            }
         })
     }
 }

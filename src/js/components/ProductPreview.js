@@ -4,7 +4,7 @@ import { selectItem } from "../services/productService.js";
 import { getImage } from "../services/imageService.js";
 import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
-import { addFavoriteMess, delFavoriteMess, userAreNotIden } from "../services/userService.js";
+import { addDeleteFavorite, addFavoriteMess, delFavoriteMess, userAreNotIden } from "../services/userService.js";
 import { cookieToObject } from "../services/cookieService.js";
 import Modal from "./Modal.js";
 import bootstrap from "../../../node_modules/bootstrap/dist/js/bootstrap.js";
@@ -54,6 +54,9 @@ class ProductPreview extends React.Component{
                                 )
                                 modalText.innerHTML = userAreNotIden;
                                 modal.show();
+                            }
+                            else{
+                                addDeleteFavorite(cookie, this)
                             }
                         }
                         }>{this.state.buttonText}</a>
