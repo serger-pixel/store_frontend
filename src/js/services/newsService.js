@@ -10,7 +10,7 @@ const URL = "http://localhost:8080/news"
 export async function getNews(list) {
     await axios.get(URL + "/get/all")
     .then(function(response){
-        //Сортировать
+        //Сортировать по секундам
         
         list.setState({
             news: response.data

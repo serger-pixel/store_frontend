@@ -1,3 +1,7 @@
+.inputWrapper{
+    display:block;
+}
+
 #News{
     position: absolute;
     width: 300px;
@@ -10,7 +14,13 @@
     position: absolute;
     bottom: 20px;
 }
+
 #newsTable{
     height: 500px;
     overflow-y: scroll;
+}
+
+#eventContent{
+    height: 100px !important;
+    width: 400px;
 }

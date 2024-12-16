@@ -34,7 +34,7 @@ class NewsTable extends React.Component{
                     {list}
                 </div>
                 <button className="btn btn-primary" id="addEvent" onClick={() => {
-                    root.render(<NewsEditPage/>);
+                    root.render(<NewsEditPage news = {this.props.news}/>);
                 }}>Добавить новость</button><br/><br/>
                 <button className="btn btn-primary" id="saveChanges">Сохранить изменения</button>
             </div>
