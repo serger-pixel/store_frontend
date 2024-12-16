@@ -7,6 +7,8 @@ import { cookieToObject } from "../services/cookieService";
 import { userAreNotIden } from "../services/userService";
 import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../../../node_modules/bootstrap/dist/js/bootstrap.js';
+import bootstrap from "../../../node_modules/bootstrap/dist/js/bootstrap.js";
+import Modal from "./Modal.js";
 
 /**
  * Класс страницы товара
@@ -39,28 +41,37 @@ class ItemPage extends React.Component{
      */
     render(){
         return(
-        <div class="card">
-            <img class="card-img-top" src = {this.state.image}/>
+        <div className="container" id="product">
+            <img id="productPicture" src = {this.state.image}/>
             <div>
-                <div class="card-title">{this.state.props.name}</div>
-                <div className="productPrice">
+                <div id="prouductName">{this.state.props.name}</div>
+                <div id="productPrice">
                     {this.state.props.price} {this.state.props.valute}
                 </div>
-                <div className="productTitle">Описание</div>
-                <div className="productDescription">{this.state.props.description}</div>
-                <div className="productActive" onClick={
+                <div id="productTitle">Описание</div>
+                <div id="productDescription">{this.state.props.description}</div>
+                <button className="btn btn-primary" id="productBtn" onClick={
                     ()=>{
                         let cookie = cookieToObject();
-                        if (cookie["user"].length === 0){
-                            let div = document.getElementById("productError")
-                            div.innerHTML = userAreNotIden;
-                        }
-                        else{
-                            addDeleteFavorite(cookie, this)
+                            if (cookie["user"].length === 0){
+                                let modal = document.getElementById("id" + this.props.id);
+                                modal = new bootstrap.Modal(modal, {
+                                    backdrop: true,
+                                    keyboard: true,
+                                    focus: true
+                                });
+                                let modalText = document.getElementById("id" + this.props.id+
+                                    "text"
+                                )
+                                modalText.innerHTML = userAreNotIden;
+                                modal.show();
+                            }
+                            else{
+                                addDeleteFavorite(cookie, this)
                         }
                     }
-                }>{this.state.buttonText}</div>
-                <div className="productError" id={"productError"}></div>
+                }>{this.state.buttonText}</button>
+                <Modal id={"id" + this.props.id}/>
             </div>
         </div>
     )}

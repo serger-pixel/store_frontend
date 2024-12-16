@@ -15,14 +15,19 @@ function FileUploader(props){
             <button type='button' className="btn btn-primary" id="btnImage" onClick={
               ()=>{
                 let data = new FormData;
-                let type = file.type.split("/")[1];
-                console.log(type)
-                if (types.includes(type)){
-                  data.append("file",file);
-                  saveImage(data, props.element)
+                if (file===null){
+                  document.getElementById("fileErr").innerHTML = "Файл не выбран"
                 }
                 else{
-                  document.getElementById("fileErr").innerHTML = "Неверный тип"
+                  let type = file.type.split("/")[1];
+                  console.log(type)
+                  if (types.includes(type)){
+                    data.append("file",file);
+                    saveImage(data, props.element);
+                  }
+                  else{
+                    document.getElementById("fileErr").innerHTML = "Неверный тип";
+                }
                 }
               }
             }>CLICK</button>

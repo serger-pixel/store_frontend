@@ -6,12 +6,13 @@ import { cookieToObject, keyAvatar, keyFavorites } from "./cookieService.js";
 import { getImage } from "./imageService.js";
 import Profile from "../components/Profile.js";
 import ListProducts from "../components/ListProducts.js";
-import { titleFavorites, typeFavorites } from "./productService.js";
+import { getFavorites, titleFavorites, typeFavorites } from "./productService.js";
+import UserRow from "../components/UserRow.js";
 
 /**
  * Путь для запроса
  */
-const URL = "http://localhost:8080/users";
+export const URL = "http://localhost:8080/users";
 
 export const usernameRegex = /^[A-Za-z]{3,20}$/;
 
@@ -28,6 +29,10 @@ export const titleReg = "Регистрация аккаунта";
  * Параметр message для поиска соответствующего значения в response.data
  */
 export const keyEx = "message";
+
+export const standartRoles = ["Moderator", "User", "Admin"];
+
+export const standartStatuses = ["unbanned", "banned"]
 
 /**
  * Сообщение об ошибке при регестрации или входе
@@ -77,13 +82,13 @@ export const notImage = 17
 /**
  * Отправка запроса добавления пользователя в базу данных
  */
-export async function regUser(user, reg) {
+export async function regUser(user, reg, type) {
     await axios.post(URL + "/reg", user, {
         headers: {
         'Content-Type': 'application/json'}
     })
     .then(function(response){
-        responseToRequest(response, reg)
+        responseToRequest(response, reg, type)
     })
 
 }
@@ -91,24 +96,26 @@ export async function regUser(user, reg) {
 /**
  * Отправка запроса получения пользователя из базы данных
  */
-export async function getUser(login, password, enter){
+export async function getUser(login, password, enter, type){
     await axios.get(URL + "/signin" + "/" + login + "/" + password)
     .then(function(response){
-        responseToRequest(response, enter)
+        responseToRequest(response, enter, type)
     }); 
 }
 
 /**
  * Изменение состояния в соответствии с запросом
  */
-async function responseToRequest(response, el){
+async function responseToRequest(response, el, type){
     if (response.data.hasOwnProperty(keyEx)){
         el.setState({
             error: response.data.message
         })
     }
     else{
-        document.cookie = keyAvatar + "=" + response.data.idImage;
+        if (type === typeEnt || type === typeReg){
+            document.cookie = keyAvatar + "=" + response.data.idImage;
+        }
         el.setState({
             data: response.data,
             error: ""
@@ -135,7 +142,8 @@ export async function addDeleteFavorite(cookie, product){
     else{
         await axios.delete(URL + "/"+ cookie["user"]+ "/delete/product/" + product.props.id)
         .then(function(response){
-            let localMass = cookie["favorites"];
+            console.log(product.props.name);
+            let localMass = cookie["favorites"].slice();
             if (localMass.indexOf("") !== -1){
                 localMass.splice(localMass.indexOf(""), 1)
             }
@@ -146,16 +154,11 @@ export async function addDeleteFavorite(cookie, product){
                 buttonText: addFavoriteMess
             })
             if (product.props.type === typeFavorites){
-                let localItems = []
-                let items = product.props.list.state.items;
-                for(let i = 0; i < items.length; i++){
-                    if (items[i].id !== product.props.id){
-                        localItems.push(items[i])
-                    }
-                }
+                console.log(cookieToObject()["favorites"]);
                 product.props.list.setState({
-                    items: localItems
-                }) 
+                    items: []
+                })
+                getFavorites(product.props.list, cookieToObject()["favorites"])
             }
         })
     }

@@ -30,6 +30,7 @@ class ListProducts extends React.Component{
      * @return компонент со списком товаров
      */
     render(){
+        console.log(this.state.items);
         if (this.state.items.length === 0){
             return(
                 <div className="container" id="Products">
