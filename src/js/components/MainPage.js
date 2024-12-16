@@ -25,8 +25,8 @@ class MainPage extends React.Component{
             <div>
                 <Header/>
                 <div className="container">
-                    <ListProducts type ={typeMain} title={titleMain}/>
                     <NewsList/>
+                    {this.props.element}
                 </div>
             </div>
             );

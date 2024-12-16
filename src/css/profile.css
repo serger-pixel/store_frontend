@@ -24,3 +24,8 @@
 #btnImage{
     height: 40px;
 }
+
+#btnUsers{
+    position: absolute;
+    bottom: 40px;
+}

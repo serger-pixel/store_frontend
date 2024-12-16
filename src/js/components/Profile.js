@@ -6,6 +6,7 @@ import ListProducts from "./ListProducts";
 import { typeMain } from "../services/productService";
 import { cookieToObject } from "../services/cookieService";
 import { notImage } from "../services/userService";
+import { getAllUsers } from "../services/adminService.js";
 import { getImage } from "../services/imageService";
 import { getMyNews } from "../services/newsService";
 import Header from "./Header";
@@ -13,6 +14,7 @@ import NewsTable from "./NewsTable.js";
 import "../../css/profile.css"
 import Modal from "./Modal.js";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
+import EditUsers from "./EditUsers";
 import bootstrap from "../../../node_modules/bootstrap/dist/js/bootstrap.js";
 
 /**
@@ -28,12 +30,14 @@ class Profile extends React.Component{
     constructor(props){
         super(props)
         let cookie = cookieToObject();
-        this.state = {image: "", news:[], error: ""}
-        console.log(cookie["avatar"])
+
+        this.state = {image: "", news:[], users: [], error: ""}
         if (cookie["avatar"] !==  notImage.toString()){
             getImage(cookie["avatar"], this)
         }
         getMyNews(this);
+        getAllUsers(this);
+
     }
 
     /**
@@ -41,6 +45,7 @@ class Profile extends React.Component{
      * @return компонент с профилем пользователя
      */
     render(){
+        console.log(document.cookie)
         return(
             <div className="conatiner" id="profile">
                 <Header/>
@@ -67,8 +72,30 @@ class Profile extends React.Component{
                 }}>Управление новостями</button>
                 <div>{this.props.element}</div>
                 <Modal id="notModerator"/>
-
+                <button className="btn btn-primary" id="btnUsers" onClick={
+                    ()=>{
+                        console.log(this)
+                        if (this.state.error.length !== 0){
+                            let modal = document.getElementById("notAccess");
+                            modal = new bootstrap.Modal(modal, {
+                                backdrop: true,
+                                keyboard: true,
+                                focus: true
+                            });
+                            let modalText = document.getElementById("notAccesstext")
+                            console.log(modalText)
+                            modalText.innerHTML = "Недостаточно прав";
+                            modal.show();
+                        }
+                        else{
+                            root.render(<EditUsers/>)
+                        }
+                        }
+                }>Управление пользователями</button>
+                {this.props.element}
+                <Modal id="notAccess"/>
             </div>
+            
             
         )
     }
