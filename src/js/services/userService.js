@@ -6,12 +6,13 @@ import { cookieToObject, keyAvatar, keyFavorites } from "./cookieService.js";
 import { getImage } from "./imageService.js";
 import Profile from "../components/Profile.js";
 import ListProducts from "../components/ListProducts.js";
-import { titleFavorites, typeFavorites } from "./productService.js";
+import { getFavorites, titleFavorites, typeFavorites } from "./productService.js";
+import UserRow from "../components/UserRow.js";
 
 /**
  * Путь для запроса
  */
-const URL = "http://localhost:8080/users";
+export const URL = "http://localhost:8080/users";
 
 export const usernameRegex = /^[A-Za-z]{3,20}$/;
 
@@ -28,6 +29,10 @@ export const titleReg = "Регистрация аккаунта";
  * Параметр message для поиска соответствующего значения в response.data
  */
 export const keyEx = "message";
+
+export const standartRoles = ["Moderator", "User", "Admin"];
+
+export const standartStatuses = ["unbanned", "banned"]
 
 /**
  * Сообщение об ошибке при регестрации или входе
@@ -135,7 +140,8 @@ export async function addDeleteFavorite(cookie, product){
     else{
         await axios.delete(URL + "/"+ cookie["user"]+ "/delete/product/" + product.props.id)
         .then(function(response){
-            let localMass = cookie["favorites"];
+            console.log(product.props.name);
+            let localMass = cookie["favorites"].slice();
             if (localMass.indexOf("") !== -1){
                 localMass.splice(localMass.indexOf(""), 1)
             }
@@ -146,16 +152,11 @@ export async function addDeleteFavorite(cookie, product){
                 buttonText: addFavoriteMess
             })
             if (product.props.type === typeFavorites){
-                let localItems = []
-                let items = product.props.list.state.items;
-                for(let i = 0; i < items.length; i++){
-                    if (items[i].id !== product.props.id){
-                        localItems.push(items[i])
-                    }
-                }
+                console.log(cookieToObject()["favorites"]);
                 product.props.list.setState({
-                    items: localItems
-                }) 
+                    items: []
+                })
+                getFavorites(product.props.list, cookieToObject()["favorites"])
             }
         })
     }
