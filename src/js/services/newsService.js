@@ -10,8 +10,7 @@ const URL = "http://localhost:8080/news"
 export async function getNews(list) {
     await axios.get(URL + "/get/all")
     .then(function(response){
-        //Сортировать по секундам
-        
+        response.data.sort((a, b) => a["id"] - b["id"]);
         list.setState({
             news: response.data
         });
@@ -41,21 +40,23 @@ export async function saveEvent(event, login) {
 }
 
 /**
- * Отправка запроса для изменения или удаления новости
+ * Отправка запроса для изменения удаления новости
  */
-export async function editDeleteEvent(event, content, login,editing){ 
-    if (editing == true){
-        await axios.put(URL + "/"+ login + "/put" + "/" + event.props.id + "/" + content)
+export async function editEvent(idEvent, content, login){ 
+        await axios.put(URL + "/"+ login + "/put" + "/" + idEvent + "/" + content)
         .then(function(response){
             
-        })
-    }
-    else{
-        await axios.delete(URL + "/"+ login + "/delete/" + event.props.id)
-        .then(function(response){
-            
-        })
-    }
+        })  
+}
+
+/**
+ * Отправка запроса для удаления новости
+ */
+export async function deleteEvent(login, idEvent){
+    await axios.delete(URL + "/"+ login + "/delete/" + idEvent)
+    .then(function(response){
+        
+    })
 }
 
 export async function getMyNews(profile){
@@ -68,6 +69,7 @@ export async function getMyNews(profile){
             });
         }
         else{
+            response.data.sort((a, b) => a["id"] - b["id"]);
             profile.setState({
                 news: response.data,
                 error: ""

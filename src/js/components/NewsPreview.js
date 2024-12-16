@@ -9,11 +9,10 @@ class NewsPreview extends React.Component{
 
     render(){
         return(
-            <div>
-                <p id="head">{this.props.head}</p>
-                <p id="content">{this.state.content}</p>
-                <p id="author">{this.props.author}</p>
-                <p id="date">{this.props.date}</p>
+            <div className="eventPrev">
+                <p className="head">{this.props.head}</p>
+                <p className="content">{this.state.content}</p>
+                <p className="author">Автор: {this.props.author}</p>
             </div>
         );
     }

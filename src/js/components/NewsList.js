@@ -11,15 +11,16 @@ class NewsList extends React.Component{
     render(){
         let list = [];
         for(let ind = 0; ind < this.state.news.length; ind++){
-            console.log(this.state.news[ind]);
             list.push(objectToNewsPrev(this.state.news[ind]));
         }
 
         return(
-            <div className="container" id="News">
-                <h1 class="display-4">Новости</h1>
-                <div className="container" id="ListNews">
-                    {list}
+            <div>
+                <h1 class="display-4" id="newsHeader">Новости</h1>
+                <div className="container" id="News">
+                    <div className="container" id="ListNews">
+                        {list}
+                    </div>
                 </div>
             </div>
         );
