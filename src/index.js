@@ -13,6 +13,5 @@ import FileUploader from './js/components/FileUploader.js';
 export const root = ReactDOM.createRoot(document.getElementById('root'));
 //root.render(<MainPage element={<ListProducts/>}/>)
 console.log(document.cookie);
-root.render(<MainPage/>)
-// setInterval(getTimeCnt, 1000)
-// root.render(<FileUploader/>)
+root.render(<MainPage element={<ListProducts type ={typeMain} title={titleMain}/>}/>)
+setInterval(getTimeCnt, 1000)

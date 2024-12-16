@@ -1,14 +1,15 @@
 import React from "react";
 import Header from "./Header";
 import { getAllUsers, ObjectToUserRow, roleEdit, setRole, setUserStatus, statusEdit } from "../services/adminService.js";
-import bootstrap from "../../../node_modules/bootstrap/dist/js/bootstrap.js";
-import Modal from "./Modal.js";
-import UserRow from "./UserRow.js";
+import { root } from "../../index.js";
+import AddUser from "./AddUser.js";
+import "../../css/edit.css"
 
 class EditUsers extends React.Component{
     constructor(props){
         super(props)
-        this.state = {users: props.users, error: ""}
+        this.state = {users: [], error: ""}
+        getAllUsers(this)
     }
 
     render(){
@@ -18,17 +19,18 @@ class EditUsers extends React.Component{
             list.push(ObjectToUserRow(this.state.users[ind], this))
         }
         console.log(list)
-        return(
-            <div>
-                <Header/>
+        return(<div>
+            <Header/>
+            <h1 className="display-5" id="titleEdit">Редактирование пользователя</h1>
+            <div className="container" id="mainEdit">
                 <div className="row">
-                <div className="col-sm-2">Логин</div>
-                <div className="col-sm-2">Роль</div>
-                <div className="col-sm-2">Статус</div>
-                <div className="col">Действие с пользователем</div>
-            </div>
+                    <div className="col-sm-2">Логин</div>
+                    <div className="col-sm-2">Роль</div>
+                    <div className="col-sm-2">Статус</div>
+                    <div className="col">Действие с пользователем</div>
+                </div>
                 {list}
-                <button className="btn btn-primary" onClick={
+                <button className="btn btn-primary" id="save" onClick={
                     ()=>{
                         for(let ind = 0; ind < this.state.users.length; ind++){
                             let id = this.state.users[ind].id;
@@ -49,7 +51,12 @@ class EditUsers extends React.Component{
                         }
                     }
                 }>Сохранить изменения</button>
-                <button className="btn btn-primary">Добавить нового пользователя</button>
+                <button className="btn btn-primary" id="add" onClick={
+                    ()=>{
+                        root.render(<AddUser/>)
+                    }
+                }>Добавить нового пользователя</button>
+            </div>
             </div>
         )
     }

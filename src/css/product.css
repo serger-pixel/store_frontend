@@ -34,3 +34,32 @@
     top: 70px;
     left: 500px;
 }
+
+#product{
+    position: absolute;
+    right: 200px;;
+    width: 700px;
+}
+
+#productPicture{
+    width: 400px;
+    height: 400px;
+}
+
+#productPrice{
+    position: absolute;
+    right: 30px;
+    top:130px;
+}
+
+#prouductName{
+    position: absolute;
+    right: 30px;
+    top:100px;
+}
+
+#productBtn{
+    position: absolute;
+    right: 30px;
+    top:200px;
+}

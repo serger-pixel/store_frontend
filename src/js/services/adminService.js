@@ -5,7 +5,13 @@ import UserRow from "../components/UserRow";
 
 export const roleEdit = "roleEdit";
 
-export const statusEdit = "statusEdit"
+export const statusEdit = "statusEdit";
+
+export const typeAdd = "Add";
+
+export const addTitle = "Добавить";
+
+export const titleAdd = "Добавление пользователя";
 
 
 export async function getAllUsers(el){

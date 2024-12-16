@@ -65,7 +65,7 @@ class Profile extends React.Component{
                             modal.show();
                         }
                         else{
-                            root.render(<EditUsers users={this.state.users}/>)
+                            root.render(<EditUsers/>)
                         }
                         }
                 }>Управление пользователями</button>

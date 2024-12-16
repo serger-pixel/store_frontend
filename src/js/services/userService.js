@@ -82,13 +82,13 @@ export const notImage = 17
 /**
  * Отправка запроса добавления пользователя в базу данных
  */
-export async function regUser(user, reg) {
+export async function regUser(user, reg, type) {
     await axios.post(URL + "/reg", user, {
         headers: {
         'Content-Type': 'application/json'}
     })
     .then(function(response){
-        responseToRequest(response, reg)
+        responseToRequest(response, reg, type)
     })
 
 }
@@ -96,24 +96,26 @@ export async function regUser(user, reg) {
 /**
  * Отправка запроса получения пользователя из базы данных
  */
-export async function getUser(login, password, enter){
+export async function getUser(login, password, enter, type){
     await axios.get(URL + "/signin" + "/" + login + "/" + password)
     .then(function(response){
-        responseToRequest(response, enter)
+        responseToRequest(response, enter, type)
     }); 
 }
 
 /**
  * Изменение состояния в соответствии с запросом
  */
-async function responseToRequest(response, el){
+async function responseToRequest(response, el, type){
     if (response.data.hasOwnProperty(keyEx)){
         el.setState({
             error: response.data.message
         })
     }
     else{
-        document.cookie = keyAvatar + "=" + response.data.idImage;
+        if (type === typeEnt || type === typeReg){
+            document.cookie = keyAvatar + "=" + response.data.idImage;
+        }
         el.setState({
             data: response.data,
             error: ""
