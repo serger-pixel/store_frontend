@@ -1,7 +1,53 @@
+.inputWrapper{
+    display:block;
+}
+
+.eventPrev{
+    border-bottom: solid 3px black;
+}
+
+.head{
+    font-size: 25px;
+}
+
 #News{
     position: absolute;
     width: 300px;
     height: 500px;
     overflow-y: scroll;
+    top: 150px;
     left: 20px
+}
+
+#newsHeader{
+    position: absolute;
+    left: 40px;
+}
+
+#btnNews{
+    position: absolute;
+    bottom: 120px;
+}
+
+#newsTable{
+    position: absolute;
+    right: 100px;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+#addEvent{
+    position: absolute;
+    left: 220px;
+    bottom: 150px;
+}
+
+#eventContent{
+    height: 100px !important;
+    width: 400px;
+}
+
+#editingField{
+    position: absolute;
+    right: 600px;
 }

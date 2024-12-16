@@ -2,12 +2,11 @@ import React from "react";
 import { getNews, objectToNewsPrev} from "../services/newsService";
 import "../../css/news.css"
 
-//function
 class NewsList extends React.Component{
     constructor(props){
         super(props);
         this.state = {news: []};
-        // getNews(this);
+        getNews(this);
     }
     render(){
         let list = [];
@@ -16,10 +15,12 @@ class NewsList extends React.Component{
         }
 
         return(
-            <div className="container" id="News">
-                <h1 class="display-4">Новости</h1>
-                <div className="container" id="ListNews">
-                    {list}
+            <div>
+                <h1 class="display-4" id="newsHeader">Новости</h1>
+                <div className="container" id="News">
+                    <div className="container" id="ListNews">
+                        {list}
+                    </div>
                 </div>
             </div>
         );

@@ -8,10 +8,13 @@ import { cookieToObject } from "../services/cookieService";
 import { notImage } from "../services/userService";
 import { getAllUsers } from "../services/adminService.js";
 import { getImage } from "../services/imageService";
+import { getMyNews } from "../services/newsService";
 import Header from "./Header";
+import NewsTable from "./NewsTable.js";
 import "../../css/profile.css"
-import EditUsers from "./EditUsers";
 import Modal from "./Modal.js";
+import { keyboard } from "@testing-library/user-event/dist/keyboard";
+import EditUsers from "./EditUsers";
 import bootstrap from "../../../node_modules/bootstrap/dist/js/bootstrap.js";
 
 /**
@@ -27,12 +30,14 @@ class Profile extends React.Component{
     constructor(props){
         super(props)
         let cookie = cookieToObject();
-        this.state = {image: "", users: [], error: ""}
-        console.log(cookie["avatar"])
+
+        this.state = {image: "", news:[], users: [], error: ""}
         if (cookie["avatar"] !==  notImage.toString()){
             getImage(cookie["avatar"], this)
         }
+        getMyNews(this);
         getAllUsers(this);
+
     }
 
     /**
@@ -49,6 +54,24 @@ class Profile extends React.Component{
                     <h1 className="display-5" id="loginProfile">{this.props.name}</h1>
                 </div>
                 <div id="imageUplouder">Загрузка аватара: <FileUploader element={this}/></div>
+                <button className="btn btn-primary" id="btnNews" onClick={() => {
+                    console.log()
+                    if(this.state.error.length !== 0){
+                        let modal = document.getElementById("notModerator");
+                        modal = new bootstrap.Modal(modal, {
+                            backdrop: true,
+                            keyboard: true,
+                            focus: true
+                        });
+                        let modalText = document.getElementById("notModeratortext");
+                        modalText.innerHTML = "Недостаточно прав";
+                        modal.show();
+                    } else {
+                        root.render(<NewsTable news = {this.state.news}/>);
+                    }
+                }}>Управление новостями</button>
+                <div>{this.props.element}</div>
+                <Modal id="notModerator"/>
                 <button className="btn btn-primary" id="btnUsers" onClick={
                     ()=>{
                         console.log(this)
