@@ -1,13 +1,17 @@
 import axios from "axios";
 import NewsPreview from "../components/NewsPreview";
+import { cookieToObject } from "./cookieService";
+import { keyEx } from "./userService";
 
 const URL = "http://localhost:8080/news"
 /**
  * Отправка запроса для получения всех новостей из базы данных
  */
 export async function getNews(list) {
-    await axios.get(URL + "/get/all_news")
+    await axios.get(URL + "/get/all")
     .then(function(response){
+        //Сортировать
+        
         list.setState({
             news: response.data
         });
@@ -17,8 +21,8 @@ export async function getNews(list) {
 /**
  * Отправка запроса для получения новости из базы данных
  */
-export async function getEvent(id, item){
-    await axios.get(URL + "/get/" + id)
+export async function getEvent(id, login, item){
+    await axios.get(URL + "/" + login + "/get/" + id)
     .then(function(response){
         item.setState({
             props: response.data
@@ -29,8 +33,8 @@ export async function getEvent(id, item){
 /**
  * Отправка запроса для сохранения новости в базе данных
  */
-export async function saveEvent(event) {
-    await axios.post(URL + "/post", event, {
+export async function saveEvent(event, login) {
+    await axios.post(URL + "/" + login +"/post", event, {
         headers: {
         'Content-Type': 'application/json'}
     });
@@ -39,26 +43,46 @@ export async function saveEvent(event) {
 /**
  * Отправка запроса для изменения или удаления новости
  */
-export async function editDeleteEvent(event, editing){ //event уже отредактированный
+export async function editDeleteEvent(event, content, login,editing){ 
     if (editing == true){
-        await axios.put(URL + "/put" + "/" + event.props.id , event)
+        await axios.put(URL + "/"+ login + "/put" + "/" + event.props.id + "/" + content)
         .then(function(response){
             
         })
     }
     else{
-        await axios.delete(URL + "/delete/" + event.props.id)
+        await axios.delete(URL + "/"+ login + "/delete/" + event.props.id)
         .then(function(response){
             
         })
     }
 }
 
+export async function getMyNews(profile){
+    let cookie = cookieToObject();
+    axios.get(URL + "/" + cookie["user"] + "/get")
+    .then(function(response){
+        if(response.data.hasOwnProperty(keyEx)){
+            profile.setState({
+                error: response.data.message
+            });
+        }
+        else{
+            profile.setState({
+                news: response.data,
+                error: ""
+            });
+        }
+
+    });
+}
+
 export function objectToNewsPrev(obj){
     return <NewsPreview
+        id = {obj.id}
         head ={obj.head}
         author = {obj.author}
-        content = {obj.content}
-        date = {obj.date}
+        content = {obj.text}
+        date = {obj.time}
     />
 }

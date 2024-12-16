@@ -2,8 +2,6 @@ import React from "react";
 import "../../css/product.css";
 import { selectItem } from "../services/productService.js";
 import { getImage } from "../services/imageService.js";
-import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
-import 'bootstrap';
 import { addDeleteFavorite, addFavoriteMess, delFavoriteMess, userAreNotIden } from "../services/userService.js";
 import { cookieToObject } from "../services/cookieService.js";
 import Modal from "./Modal.js";

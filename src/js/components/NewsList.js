@@ -2,16 +2,16 @@ import React from "react";
 import { getNews, objectToNewsPrev} from "../services/newsService";
 import "../../css/news.css"
 
-//function
 class NewsList extends React.Component{
     constructor(props){
         super(props);
         this.state = {news: []};
-        // getNews(this);
+        getNews(this);
     }
     render(){
         let list = [];
         for(let ind = 0; ind < this.state.news.length; ind++){
+            console.log(this.state.news[ind]);
             list.push(objectToNewsPrev(this.state.news[ind]));
         }
 
