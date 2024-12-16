@@ -25,6 +25,7 @@
     width: 900px; 
     height: 600px;  
     overflow-y: scroll;
+    background-color: white;
 }
 
 #Products{
@@ -33,6 +34,7 @@
     height: 600px;  
     top: 70px;
     left: 500px;
+    background-color: white;
 }
 
 #product{

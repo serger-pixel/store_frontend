@@ -2,6 +2,9 @@ import axios from "axios";
 import NewsPreview from "../components/NewsPreview";
 import { cookieToObject } from "./cookieService";
 import { keyEx } from "./userService";
+import NewsTable from "../components/NewsTable";
+import { root } from "../..";
+import bootstrap from "../../../node_modules/bootstrap/dist/js/bootstrap.js";
 
 const URL = "http://localhost:8080/news"
 /**
@@ -59,14 +62,24 @@ export async function deleteEvent(login, idEvent){
     })
 }
 
-export async function getMyNews(profile){
+export async function getMyNews(profile, id="None"){
     let cookie = cookieToObject();
-    axios.get(URL + "/" + cookie["user"] + "/get")
+    await axios.get(URL + "/" + cookie["user"] + "/get")
     .then(function(response){
         if(response.data.hasOwnProperty(keyEx)){
             profile.setState({
                 error: response.data.message
             });
+            if (id != "None"){
+                let modal = document.getElementById(id);
+                modal = new bootstrap.Modal(modal, {
+                    backdrop: true,
+                    keyboard: true,
+                    focus: true
+                });
+                let modalText = document.getElementById(id + "text");
+                modalText.innerHTML = "Недостаточно прав";
+                modal.show();}
         }
         else{
             response.data.sort((a, b) => a["id"] - b["id"]);
@@ -74,8 +87,9 @@ export async function getMyNews(profile){
                 news: response.data,
                 error: ""
             });
+            root.render(<NewsTable news = {profile.state.news}/>)
         }
-
+        console.log(id);
     });
 }
 

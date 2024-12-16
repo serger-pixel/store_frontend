@@ -158,7 +158,8 @@ export async function addDeleteFavorite(cookie, product){
                 product.props.list.setState({
                     items: []
                 })
-                getFavorites(product.props.list, cookieToObject()["favorites"])
+                getFavorites(product.props.list, cookieToObject()["favorites"]);
+                getFavorites(product.props.list, cookieToObject()["favorites"]);
             }
         })
     }

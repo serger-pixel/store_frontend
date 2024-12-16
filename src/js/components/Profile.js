@@ -35,8 +35,6 @@ class Profile extends React.Component{
         if (cookie["avatar"] !==  notImage.toString()){
             getImage(cookie["avatar"], this)
         }
-        getMyNews(this);
-        getAllUsers(this);
 
     }
 
@@ -55,41 +53,12 @@ class Profile extends React.Component{
                 </div>
                 <div id="imageUplouder">Загрузка аватара: <FileUploader element={this}/></div>
                 <button className="btn btn-primary" id="btnNews" onClick={() => {
-                    console.log()
-                    if(this.state.error.length !== 0){
-                        let modal = document.getElementById("notModerator");
-                        modal = new bootstrap.Modal(modal, {
-                            backdrop: true,
-                            keyboard: true,
-                            focus: true
-                        });
-                        let modalText = document.getElementById("notModeratortext");
-                        modalText.innerHTML = "Недостаточно прав";
-                        modal.show();
-                    } else {
-                        root.render(<NewsTable news = {this.state.news}/>);
-                    }
+                    getMyNews(this, "notModerator");
                 }}>Управление новостями</button>
-                <div>{this.props.element}</div>
                 <Modal id="notModerator"/>
                 <button className="btn btn-primary" id="btnUsers" onClick={
                     ()=>{
-                        console.log(this)
-                        if (this.state.error.length !== 0){
-                            let modal = document.getElementById("notAccess");
-                            modal = new bootstrap.Modal(modal, {
-                                backdrop: true,
-                                keyboard: true,
-                                focus: true
-                            });
-                            let modalText = document.getElementById("notAccesstext")
-                            console.log(modalText)
-                            modalText.innerHTML = "Недостаточно прав";
-                            modal.show();
-                        }
-                        else{
-                            root.render(<EditUsers/>)
-                        }
+                        getAllUsers(this, "notAccess");
                         }
                 }>Управление пользователями</button>
                 {this.props.element}
@@ -100,5 +69,4 @@ class Profile extends React.Component{
         )
     }
 }
-
 export default Profile
