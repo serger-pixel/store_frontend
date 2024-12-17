@@ -7,10 +7,15 @@ import { cookieToObject, keyAvatar } from "./cookieService";
  */
 const URL = "http://localhost:8080/images/"
 
+/**
+ * Типы файлов
+ */
 export const types =["jpeg", "png", "jpg"]
 
 /**
  * Отправка запроса для сохранения изображения в базе данных
+ * @param image изображение
+ * @param profil компонент профиля
  */
 export async function saveImage(image, profil) {
     await axios.post(URL + "post", image, {
@@ -25,6 +30,8 @@ export async function saveImage(image, profil) {
 
 /**
  * Отправка запроса для получения изображения из базы данных
+ * @param id идентификатор изображения
+ * @param el компонент
  */
 export async function getImage(id, el) {
     await axios.get(URL+"get/"+id).then( function(response){

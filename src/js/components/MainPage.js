@@ -10,8 +10,8 @@ import { titleMain, typeMain } from "../services/productService.js";
 class MainPage extends React.Component{ 
     /**
      * Конструктор
-     * @param
-     * props - список товаров
+     * @param props список товаров(element)
+     * 
      */
     constructor(props){
         super(props);

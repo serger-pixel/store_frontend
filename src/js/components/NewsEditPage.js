@@ -6,11 +6,24 @@ import { saveEvent } from "../services/newsService";
 import { cookieToObject } from "../services/cookieService";
 import { getMyNews } from "../services/newsService";
 
+/**
+ * Класс-компонент страницы добавления новости
+ */
 class NewsEditPage extends React.Component{
+    /**
+     * Конструктор
+     * @param props список новостей(news) 
+     * 
+     */
     constructor(props){
         super(props);
         this.state = {news: this.props.news, error: ""}
     }
+
+    /**
+     * Отображение компонента страницы добавления новости
+     * @returns компонент страницы добавления новости
+     */
     render(){
     return(
         <div>

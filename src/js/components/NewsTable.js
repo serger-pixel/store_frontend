@@ -6,13 +6,26 @@ import { cookieToObject } from "../services/cookieService";
 import { deleteEvent, getMyNews } from "../services/newsService";
 import NewsEditEvent from "./NewsEditEvent";
 
+/**
+ * Класс-компонент таблицы новостей модератора
+ */
 class NewsTable extends React.Component{
+
+    /**
+     * Конструктор
+     * @param props список новостей(news)
+     * 
+     */
     constructor(props){
         super(props);
         this.state = {news: this.props.news, error: ""}
         getMyNews(this);
     }
 
+    /**
+     * Отображение компонента таблицы новостей
+     * @returns компонент таблицы новостей
+     */
     render(){
         let list = [];
         for(let i = 0; i < this.state.news.length; i++){

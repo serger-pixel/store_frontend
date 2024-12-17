@@ -2,12 +2,26 @@ import React from "react";
 import { getNews, objectToNewsPrev} from "../services/newsService";
 import "../../css/news.css"
 
+/**
+ * Класс-компонент списка новостей для главной страницы
+ */
 class NewsList extends React.Component{
+
+    /**
+     * Конструктор
+     * @param props параметры
+     * 
+     */
     constructor(props){
         super(props);
         this.state = {news: []};
         getNews(this);
     }
+
+    /**
+     * Отображение компонента списка новостей
+     * @returns компонент списка новостей
+     */
     render(){
         let list = [];
         for(let ind = 0; ind < this.state.news.length; ind++){

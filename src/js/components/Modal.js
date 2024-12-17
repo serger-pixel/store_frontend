@@ -1,6 +1,11 @@
 
 import React from "react";
 
+/**
+ * Функция-компонент для всплывающих сообщений
+ * @param props идентификатор ошибки
+ * @returns компонент всплывающего сообщения
+ */
 function Modal(props){
     return(
         <div class="modal" tabindex="-1" id={props.id}>
