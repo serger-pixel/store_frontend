@@ -5,7 +5,7 @@ import MainPage from "./MainPage";
 import ListProducts from "./ListProducts";
 import { typeMain } from "../services/productService";
 import { cookieToObject } from "../services/cookieService";
-import { notImage } from "../services/userService";
+import { notImage, userFileUpl } from "../services/userService";
 import { getAllUsers } from "../services/adminService.js";
 import { getImage } from "../services/imageService";
 import { getMyNews } from "../services/newsService";
@@ -51,7 +51,8 @@ class Profile extends React.Component{
                     <img id="imageProfile" src={this.state.image}/>
                     <h1 className="display-5" id="loginProfile">{this.props.name}</h1>
                 </div>
-                <div id="imageUplouder">Загрузка аватара: <FileUploader element={this}/></div>
+                <div id="imageUplouder">Загрузка аватара: <FileUploader element={this} 
+                type={userFileUpl}/></div>
                 <button className="btn btn-primary" id="btnNews" onClick={() => {
                     getMyNews(this, "notModerator");
                 }}>Управление новостями</button>

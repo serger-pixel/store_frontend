@@ -23,8 +23,10 @@ export async function saveImage(image, profil, type = "None") {
         'Content-Type': 'multipart/form-data'}
     })
     .then(function(response){
-        setImage(response.data.id, profil);
-        document.cookie = keyAvatar + "=" + response.data.id;
+        setImage(response.data.id, profil, type);
+        if (type === "None"){
+            document.cookie = keyAvatar + "=" + response.data.id;
+        }
     })
 }
 

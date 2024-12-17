@@ -9,6 +9,16 @@ import { getFavorites, titleFavorites, typeFavorites } from "./productService.js
 export const URL = "http://localhost:8080/users";
 
 /**
+ * Тип загрузчика фото для админа
+ */
+export const adminFileUpl = "adminUpl";
+
+/**
+ * Тип загрузчика фото для пользователя
+ */
+export const userFileUpl = "usernUpl";
+
+/**
  * Регулярное выражение для проверки логина
  */
 export const usernameRegex = /^[A-Za-z]{3,20}$/;
@@ -201,10 +211,12 @@ export async function addDeleteFavorite(cookie, product){
  * @param imageId идентификатор изображения
  * @param profil компонет профиля
  */
-export async function setImage(imageId, profil) {
+export async function setImage(imageId, profil, type="None") {
     axios.put(URL + "/" + profil.props.name + 
         "/set/product/image/" + imageId)
         .then(function(response){
-            getImage(imageId, profil)
+            if (type === "None"){
+                getImage(imageId, profil)
+            }
         })
 }

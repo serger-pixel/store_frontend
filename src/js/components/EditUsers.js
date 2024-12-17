@@ -34,13 +34,14 @@ class EditUsers extends React.Component{
             <Header/>
             <h1 className="display-5" id="titleEdit">Редактирование пользователя</h1>
             <div className="container" id="mainEdit">
-                <div className="row">
-                    <div className="col-sm-2">Логин</div>
-                    <div className="col-sm-2">Изменение логина</div>
-                    <div className="col-sm-2">Изменение пароля</div>
-                    <div className="col-sm-2">Роль</div>
-                    <div className="col-sm-2">Статус</div>
-                    <div className="col">Действие с пользователем</div>
+                <div className="row" id="mainTable">
+                    <div className="col-sm-1 mb-3">Логин</div>
+                    <div className="col-sm-2 mb-3">Изменение логина</div>
+                    <div className="col-sm-2 mb-4">Изменение пароля</div>
+                    <div className="col-sm-1 mb-4 ">Роль</div>
+                    <div className="col-sm-1">Статус</div>
+                    <div className="col-sm-1">Загрузка аватара</div>
+                    <div className="col-sm-1">Действие с пользователем</div>
                 </div>
                 {list}
                 <button className="btn btn-primary" id="save" onClick={
@@ -51,22 +52,18 @@ class EditUsers extends React.Component{
                             let setValue = document.getElementById(statusEdit+id).value
                             if(setValue !== value){
                                 setUserStatus(this, id, setValue);
-                                getAllUsers(this);
-                                getAllUsers(this);
                             }
                             value = this.state.users[ind].role;
                             setValue = document.getElementById(roleEdit+id).value;
                             if(setValue !== value){
                                 setRole(this, id, setValue);
-                                getAllUsers(this);
-                                getAllUsers(this);
                             }
-                            value = this.state.users[ind].login;
+                            value = this.state.users[ind].name;
                             setValue = document.getElementById(loginEdit+id).value;
                             if(setValue !== ""){
                                 let result = true
                                 for(let j = 0; j < this.state.users.length; j++){
-                                    if (this.state.users[j].login === setValue){
+                                    if (this.state.users[j].name === setValue){
                                         result = false
                                         break;
                                     }

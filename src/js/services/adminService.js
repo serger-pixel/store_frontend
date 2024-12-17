@@ -105,7 +105,7 @@ export async function getAllUsers(el, id="None"){
 export function ObjectToUserRow(obj, table){
     return <UserRow 
         role={obj.role}
-        login={obj.login}
+        name={obj.login}
         id={obj.id}
         status = {obj.status}
         table = {table}
