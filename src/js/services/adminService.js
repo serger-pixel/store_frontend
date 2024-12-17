@@ -6,17 +6,36 @@ import { root } from "../..";
 import bootstrap from "../../../node_modules/bootstrap/dist/js/bootstrap.js";
 import EditUsers from "../components/EditUsers.js";
 
+/**
+ * Идентификатор модал для редактирования роли
+ */
 export const roleEdit = "roleEdit";
 
+/**
+ * Идентификатор модал для редактирования статуса
+ */
 export const statusEdit = "statusEdit";
 
+/**
+ * Тип компонента для добавления пользователя
+ */
 export const typeAdd = "Add";
 
+/**
+ * Надпись для кнопки добавления пользователя
+ */
 export const addTitle = "Добавить";
 
+/**
+ * Заголовок добавления пользователя
+ */
 export const titleAdd = "Добавление пользователя";
 
-
+/**
+ * Получение всех пользователей
+ * @param el компонент
+ * @param id идентификатор модал
+ */
 export async function getAllUsers(el, id="None"){
     let cookie = cookieToObject();
     await axios.get(URL + "/" + cookie["user"]+ "/get/all")
@@ -51,6 +70,12 @@ export async function getAllUsers(el, id="None"){
     })
 }
 
+/**
+ * Преобразование объекта в строчку редактирования
+ * @param obj 
+ * @param table таблица редактирования
+ * @returns 
+ */
 export function ObjectToUserRow(obj, table){
     return <UserRow 
         role={obj.role}
@@ -61,6 +86,11 @@ export function ObjectToUserRow(obj, table){
     />
 }
 
+/**
+ * Удаление пользователя
+ * @param el компонент
+ * @param id идентификатор пользователя, которого удаляют
+ */
 export async function deleteUser(el, id){
     let cookie = cookieToObject();
     await axios.delete(URL + "/" + cookie["user"]+ "/delete/" + id)
@@ -73,6 +103,12 @@ export async function deleteUser(el, id){
     })
 }
 
+/**
+ * Изменение статуса пользователя
+ * @param el компонент
+ * @param id идентификатор пользователя, у которого изменяют статус
+ * @param status статус
+ */
 export async function setUserStatus(el, id, status) {
     let cookie = cookieToObject();
     await axios.put(URL + "/"+cookie["user"]+ "/setuserstatus/" +
@@ -84,7 +120,12 @@ export async function setUserStatus(el, id, status) {
             }
         })
 }
-
+/**
+* Изменение роли пользователя
+* @param el компонент
+* @param id идентификатор пользователя, у которого изменяют роль
+* @param role роль
+*/
 export async function setRole(el, id, role) {
     let cookie = cookieToObject();
     await axios.put(URL + "/"+cookie["user"]+ "/editrole/" +

@@ -51,7 +51,7 @@ class Header extends React.Component{
                     element={<ListProducts type={typeFavorites} title={titleFavorites}/>}
                     name={cookie["user"]
                     }
-                />)
+                />);
             }
         }>{cookie["user"]}</a>
         regOut = <a className="nav-link" href="#" id="regOut" onClick={
@@ -60,7 +60,7 @@ class Header extends React.Component{
                 document.cookie = keyFavorites + "=";
                 document.cookie = keyAvatar + "=";
                 root.render(<MainPage element={<ListProducts type={typeMain}
-                title ={titleMain}/>}/>)
+                title ={titleMain}/>}/>);
             }
         }>Выход</a>
     }
@@ -73,7 +73,7 @@ class Header extends React.Component{
                 <a className="nav-link" href="#" id="mainNav" onClick={
                     ()=>{
                         root.render(<MainPage element={<ListProducts type={typeMain}
-                        title ={titleMain}/>}/>)
+                        title ={titleMain}/>}/>);
                     }
                 }>ГЛАВНАЯ</a>
                 </li>

@@ -1,11 +1,10 @@
 import React from "react";
-import {getAllItem, getFavorites, ObjectToProdPrev, typeMain} from "../services/productService.js"
-import { selectItem } from "../services/productService.js";
+import {getAllItem, getFavorites, ObjectToProdPrev, typeMain} from "../services/productService.js";
 import { cookieToObject } from "../services/cookieService.js";
 import "../../css/product.css";
 
 /**
- * Класс списка товаров
+ * Класс-компонент списка товаров
  */
 class ListProducts extends React.Component{
     /**
@@ -18,10 +17,10 @@ class ListProducts extends React.Component{
         super(props);
         this.state={items: [], update: ""};
         if(props.type === typeMain){
-            getAllItem(this)
+            getAllItem(this);
         }
         else{
-            getFavorites(this, cookieToObject()["favorites"])
+            getFavorites(this, cookieToObject()["favorites"]);
         }
     }
 

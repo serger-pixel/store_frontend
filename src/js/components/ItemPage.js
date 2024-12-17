@@ -2,7 +2,6 @@ import React from "react";
 import "../../css/product.css"
 import { addDeleteFavorite, addFavoriteMess, delFavoriteMess} from "../services/userService";
 import { getItem } from "../services/productService";
-import { backToMain } from "../services/mainPageService";
 import { cookieToObject } from "../services/cookieService";
 import { userAreNotIden } from "../services/userService";
 import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
@@ -11,7 +10,7 @@ import bootstrap from "../../../node_modules/bootstrap/dist/js/bootstrap.js";
 import Modal from "./Modal.js";
 
 /**
- * Класс страницы товара
+ * Класс-компонент страницы товара
  */
 class ItemPage extends React.Component{
 

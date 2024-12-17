@@ -12,7 +12,7 @@ import { root } from "../..";
 import { typeAdd } from "../services/adminService";
 
 /**
- * Класс страницы входа/регистрации
+ * Класс-компонент страницы входа/регистрации
  */
 class EnterRegPage extends React.Component{
 
@@ -22,8 +22,8 @@ class EnterRegPage extends React.Component{
      * props - тип страницы(type)
      */
     constructor(props){
-        super(props)
-        this.state={data: {}, error: ""}
+        super(props);
+        this.state={data: {}, error: ""};
     }
 
     /**
@@ -31,7 +31,6 @@ class EnterRegPage extends React.Component{
      * @return страницу входа или регистрации в зависимости от типа
      */
     render(){
-        console.log(this.state.data)
         if (this.state.error === "" && 
             Object.keys(this.state.data).length !== 0 &&
             (this.props.type === typeEnt ||
@@ -43,7 +42,7 @@ class EnterRegPage extends React.Component{
         }
         if (this.state.error === "" && 
             Object.keys(this.state.data).length !== 0 && this.props.type === typeAdd){
-                root.render(<EditUsers/>)
+                root.render(<EditUsers/>);
             } 
         return(
         <div>
@@ -63,8 +62,7 @@ class EnterRegPage extends React.Component{
                             if (login !=="" && password !== "")
                             {
                                 if(this.props.type == typeEnt){
-                                    getUser(login, CryptoJS.SHA256(password).toString(), this, 
-                                this.props.type)
+                                    getUser(login, CryptoJS.SHA256(password).toString(), this);
                                 }
                                 else{
                                     if (usernameRegex.test(login) &&
@@ -73,14 +71,14 @@ class EnterRegPage extends React.Component{
                                         regUser({
                                         login:  login,
                                         password: CryptoJS.SHA256(password).toString()
-                                    }, this, this.props.type)
+                                    }, this, this.props.type);
                                     }
                                     else{
                                         if (!usernameRegex.test(login)){
-                                            validationError.innerHTML = logErr
+                                            validationError.innerHTML = logErr;
                                         }
                                         else{
-                                            validationError.innerHTML = passwordErr
+                                            validationError.innerHTML = passwordErr;
                                         }
                                     }
                                 }

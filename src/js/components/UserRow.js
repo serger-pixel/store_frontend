@@ -2,11 +2,22 @@ import React from "react";
 import {standartRoles, standartStatuses} from "../services/userService.js";
 import {deleteUser, getAllUsers, roleEdit, statusEdit } from "../services/adminService.js"
 
+/**
+ * Компонент строчки редактирования
+ */
 class UserRow extends React.Component{
+    /**
+     * Конструктор
+     * @param props 
+     */
     constructor(props){
         super(props)
     }
 
+    /**
+     * Отображения строчки редактирования
+     * @returns 
+     */
     render(){
         let roles = standartRoles.slice();
         roles.splice(roles.indexOf(this.props.role), 1);

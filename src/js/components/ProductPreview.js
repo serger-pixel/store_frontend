@@ -8,9 +8,13 @@ import Modal from "./Modal.js";
 import bootstrap from "../../../node_modules/bootstrap/dist/js/bootstrap.js";
 
 /**
- * Класс отображения товара на главной странице
+ * Класс-компонент отображения карточки товара
  */
 class ProductPreview extends React.Component{
+    /**
+     * Конструктор
+     * @param props параметры
+     */
     constructor(props) {
         super(props);
         let message;
@@ -25,6 +29,10 @@ class ProductPreview extends React.Component{
         getImage(this.props.id, this)
     }
 
+    /**
+     * Отображение карточки товара
+     * @returns карточка товара
+     */
     render() {
         return (
             <div className="card">
