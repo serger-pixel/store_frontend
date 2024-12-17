@@ -17,7 +17,7 @@ export const types =["jpeg", "png", "jpg"]
  * @param image изображение
  * @param profil компонент профиля
  */
-export async function saveImage(image, profil) {
+export async function saveImage(image, profil, type = "None") {
     await axios.post(URL + "post", image, {
         headers: {
         'Content-Type': 'multipart/form-data'}

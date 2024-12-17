@@ -1,6 +1,6 @@
 import React from "react";
 import {standartRoles, standartStatuses} from "../services/userService.js";
-import {deleteUser, getAllUsers, roleEdit, statusEdit } from "../services/adminService.js"
+import {deleteUser, errorEditlog, errorEditpass, getAllUsers, loginEdit, passwordEdit, roleEdit, statusEdit } from "../services/adminService.js"
 
 /**
  * Компонент строчки редактирования
@@ -25,9 +25,15 @@ class UserRow extends React.Component{
         statuses.splice(statuses.indexOf(this.props.status), 1);
         return(
             <div className="row">
+                <div className="col-sm-2" id={loginEdit + this.props.id+"value"}>{this.props.login}</div>
                 <div className="col-sm-2">
-                    {this.props.login}
+                    <input type="text" id={loginEdit + this.props.id}/>
+                    <div id={errorEditlog + this.props.id}></div>
                 </div>
+                <div className="col-sm-2">
+                    <input type="password" id={passwordEdit + this.props.id}/>
+                    <div id={errorEditpass + this.props.id}></div>
+                </div>  
                 <div className="col-sm-2">
                 <select className="form-select" id={roleEdit + this.props.id} >
                     <option value={this.props.role} selected>{this.props.role}</option>

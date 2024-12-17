@@ -1,9 +1,11 @@
 import React from "react";
 import Header from "./Header";
-import { getAllUsers, ObjectToUserRow, roleEdit, setRole, setUserStatus, statusEdit } from "../services/adminService.js";
+import { errorEditlog, errorEditpass, errorUserAre, getAllUsers, loginEdit, ObjectToUserRow, passwordEdit, roleEdit, setLogin, setPassword, setRole, setUserStatus, statusEdit } from "../services/adminService.js";
 import { root } from "../../index.js";
 import AddUser from "./AddUser.js";
 import "../../css/edit.css"
+import { logErr, passwordErr, passwordRegex, usernameRegex } from "../services/userService.js";
+import { cookieToObject } from "../services/cookieService.js";
 
 /**
  * Класс-компонент таблицы редактирования пользователя
@@ -34,6 +36,8 @@ class EditUsers extends React.Component{
             <div className="container" id="mainEdit">
                 <div className="row">
                     <div className="col-sm-2">Логин</div>
+                    <div className="col-sm-2">Изменение логина</div>
+                    <div className="col-sm-2">Изменение пароля</div>
                     <div className="col-sm-2">Роль</div>
                     <div className="col-sm-2">Статус</div>
                     <div className="col">Действие с пользователем</div>
@@ -48,14 +52,67 @@ class EditUsers extends React.Component{
                             if(setValue !== value){
                                 setUserStatus(this, id, setValue);
                                 getAllUsers(this);
+                                getAllUsers(this);
                             }
                             value = this.state.users[ind].role;
                             setValue = document.getElementById(roleEdit+id).value;
                             if(setValue !== value){
                                 setRole(this, id, setValue);
                                 getAllUsers(this);
+                                getAllUsers(this);
                             }
-                            
+                            value = this.state.users[ind].login;
+                            setValue = document.getElementById(loginEdit+id).value;
+                            if(setValue !== ""){
+                                let result = true
+                                for(let j = 0; j < this.state.users.length; j++){
+                                    if (this.state.users[j].login === setValue){
+                                        result = false
+                                        break;
+                                    }
+                                    let cookie = cookieToObject();
+                                    if (cookie["user"] === setValue){
+                                        result = false;
+                                    }
+                                }
+                                if (result === true){
+                                    if (usernameRegex.test(setValue)){
+                                        setLogin(this, id, setValue);
+                                        document.getElementById(errorEditlog + id)
+                                        .innerHTML = "";
+                                        document.getElementById(loginEdit + id).value="";
+                                    }
+                                    else{
+                                        document.getElementById(errorEditlog + id)
+                                        .innerHTML = logErr;
+                                    }
+                                }
+                                else{
+                                    document.getElementById(errorEditlog + id)
+                                    .innerHTML = errorUserAre; 
+                                }
+                            }
+                            else{
+                                document.getElementById(errorEditlog + id)
+                                .innerHTML = "";
+                            }
+                            setValue = document.getElementById(passwordEdit+id).value;
+                            if(setValue !== ""){
+                                if (passwordRegex.test(setValue)){
+                                    setPassword(this, id, setValue);
+                                    document.getElementById(errorEditpass + id)
+                                    .innerHTML = "";
+                                    document.getElementById(passwordEdit+id).value = ""
+                                }
+                                else{
+                                    document.getElementById(errorEditpass + id)
+                                    .innerHTML = passwordErr;
+                                }
+                            }
+                            else{
+                                document.getElementById(errorEditpass + id)
+                                .innerHTML = "";
+                            }
                         }
                     }
                 }>Сохранить изменения</button>

@@ -135,7 +135,7 @@ export async function getUser(login, password, enter){
  * @param  el компонент
  * @param  type тип компонента
  */
-async function responseToRequest(response, el, type = type=typeEnt){
+async function responseToRequest(response, el, type=typeEnt){
     if (response.data.hasOwnProperty(keyEx)){
         el.setState({
             error: response.data.message

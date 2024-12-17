@@ -5,14 +5,40 @@ import UserRow from "../components/UserRow";
 import { root } from "../..";
 import bootstrap from "../../../node_modules/bootstrap/dist/js/bootstrap.js";
 import EditUsers from "../components/EditUsers.js";
+import CryptoJS from "../../../node_modules/crypto-js/crypto-js"
 
 /**
- * Идентификатор модал для редактирования роли
+ * Ошибка существующего пользователя при изменении
+ */
+export const errorUserAre = "Пользователь уже существует"
+
+/**
+ * Идентификатор ошибки логина
+ */
+export const errorEditlog = "errorEditlog"
+
+/**
+ * Идентификатор ошибки пароля
+ */
+export  const errorEditpass = "errorEditpass"
+
+/**
+ * Идентификатор для редактирования роли
  */
 export const roleEdit = "roleEdit";
 
 /**
- * Идентификатор модал для редактирования статуса
+ * Идентификатор для редактирования логина
+ */
+export const loginEdit = "loginEdit";
+
+/**
+ * Идентификатор для редактирования пароля
+ */
+export const passwordEdit = "passwordEdit";
+
+/**
+ * Идентификатор для редактирования статуса
  */
 export const statusEdit = "statusEdit";
 
@@ -100,6 +126,7 @@ export async function deleteUser(el, id){
                 error: response.data.message
             })
         }
+        getAllUsers(el);
     })
 }
 
@@ -111,6 +138,7 @@ export async function deleteUser(el, id){
  */
 export async function setUserStatus(el, id, status) {
     let cookie = cookieToObject();
+    console.log(1);
     await axios.put(URL + "/"+cookie["user"]+ "/setuserstatus/" +
         id+ "/" + status).then(function(response){
             if (response.data.hasOwnProperty(keyEx)){
@@ -118,6 +146,7 @@ export async function setUserStatus(el, id, status) {
                     error: response.data.message
                 })
             }
+            getAllUsers(el);
         })
 }
 /**
@@ -128,6 +157,7 @@ export async function setUserStatus(el, id, status) {
 */
 export async function setRole(el, id, role) {
     let cookie = cookieToObject();
+    console.log(1);
     await axios.put(URL + "/"+cookie["user"]+ "/editrole/" +
         id+ "/" + role).then(function(response){
             if (response.data.hasOwnProperty(keyEx)){
@@ -135,5 +165,33 @@ export async function setRole(el, id, role) {
                     error: response.data.message
                 })
             }
+            getAllUsers(el);
+        })
+}
+
+export async function setLogin(el, id, login) {
+    let cookie = cookieToObject();
+    console.log(1);
+    await axios.put(URL + "/"+cookie["user"]+ "/setuserlogin/" +
+        id+ "/" + login).then(function(response){
+            if (response.data.hasOwnProperty(keyEx)){
+                el.setState({
+                    error: response.data.message
+                })
+            }
+            getAllUsers(el);
+        })
+}
+
+export async function setPassword(el, id, password) {
+    let cookie = cookieToObject();
+    await axios.put(URL + "/"+cookie["user"]+ "/setuserpassword/" +
+        id + "/" + CryptoJS.SHA256(password)).then(function(response){
+            if (response.data.hasOwnProperty(keyEx)){
+                el.setState({
+                    error: response.data.message
+                })
+            }
+            getAllUsers(el);
         })
 }
