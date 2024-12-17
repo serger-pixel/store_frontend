@@ -5,11 +5,24 @@ import NewsTable from "./NewsTable";
 import { editEvent } from "../services/newsService";
 import { cookieToObject } from "../services/cookieService";
 
+/**
+ * Класс-компонент страницы редактирования новости
+ */
 class NewsEditEvent extends React.Component{
+    /**
+     * Конструктор
+     * @param props список новостей(news)
+     * 
+     */
     constructor(props){
         super(props);
         this.state = {news: this.props.news, error: ""}
     }
+
+    /**
+     * Отображение компонента страницы редактирования новости
+     * @returns компонент страницы редактирования новости
+     */
     render(){
     return(
         <div>

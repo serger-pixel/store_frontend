@@ -24,12 +24,19 @@ export const typeMain = "main";
  */
 export const typeFavorites = "favorites"; 
 
+/**
+ * Заголовок списка товаров
+ */
 export const titleMain = "Товары";
 
+/**
+ * Заголовок списка избранных товаров
+ */
 export const titleFavorites = "Список избранного";
 
 /**
  * Отправка запроса для сохранения товара в базе данных
+ * @param item товар
  */
 export async function saveItem(item) {
     await axios.post(URL + "/post", item, {
@@ -41,6 +48,8 @@ export async function saveItem(item) {
 
 /**
  * Отправка запроса для получения товара из базы данных
+ * @param id идентификатор товара
+ * @param item компонент
  */
 export async function getItem(id, item) {
     await axios.get(URL + "/get/" + id)
@@ -54,6 +63,7 @@ export async function getItem(id, item) {
 
 /**
  * Отправка запроса для получения всех товаров из базы данных
+ * @param list компонент списка товаров
  */
 export async function getAllItem(list) {
     await axios.get(URL + "/get/all")
@@ -66,6 +76,8 @@ export async function getAllItem(list) {
 
 /**
  * Отправка запроса для получения списка избранных товаров
+ * @param list компонент списка товаров
+ * @param favorites список избранных товаров
  */
 export async function getFavorites(list, favorites) {
     let items = [];
@@ -88,11 +100,19 @@ export async function getFavorites(list, favorites) {
 
 /**
  * Отображение на главной странице информации о товаре
+ * @param key идентификатор товара
  */
 export function selectItem(key){
     root.render(<MainPage element={<ItemPage id={key}/>}/>)
 }
 
+/**
+ * Создание компонента товара с данными объекта
+ * @param obj объект
+ * @param list список товаров
+ * @param type тип списка
+ * @returns компонента товара
+ */
 export function ObjectToProdPrev(obj, list, type){
     return <ProductPreview 
         name={obj.name}

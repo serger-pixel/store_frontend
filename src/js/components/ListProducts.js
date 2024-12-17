@@ -10,8 +10,8 @@ import "../../css/product.css";
 class ListProducts extends React.Component{
     /**
      * Конструктор
-     * @param
-     * props - тип списка(type)
+     * @param props тип списка(type)
+     * 
      */
     constructor(props)
     {    

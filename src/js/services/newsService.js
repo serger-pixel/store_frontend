@@ -6,9 +6,14 @@ import NewsTable from "../components/NewsTable";
 import { root } from "../..";
 import bootstrap from "../../../node_modules/bootstrap/dist/js/bootstrap.js";
 
+/**
+ * Путь для запроса
+ */
 const URL = "http://localhost:8080/news"
+
 /**
  * Отправка запроса для получения всех новостей из базы данных
+ * @param list компонент списка новостей
  */
 export async function getNews(list) {
     await axios.get(URL + "/get/all")
@@ -22,6 +27,9 @@ export async function getNews(list) {
 
 /**
  * Отправка запроса для получения новости из базы данных
+ * @param id идентификатор новости
+ * @param login логин пользователя
+ * @param item компонент
  */
 export async function getEvent(id, login, item){
     await axios.get(URL + "/" + login + "/get/" + id)
@@ -34,6 +42,8 @@ export async function getEvent(id, login, item){
 
 /**
  * Отправка запроса для сохранения новости в базе данных
+ * @param event новость
+ * @param login логин пользователя
  */
 export async function saveEvent(event, login) {
     await axios.post(URL + "/" + login +"/post", event, {
@@ -43,25 +53,35 @@ export async function saveEvent(event, login) {
 }
 
 /**
- * Отправка запроса для изменения удаления новости
+ * Отправка запроса для изменения новости
+ * @param idEvent идентификатор новости
+ * @param content новое содержание
+ * @param login логин пользователя
  */
 export async function editEvent(idEvent, content, login){ 
         await axios.put(URL + "/"+ login + "/put" + "/" + idEvent + "/" + content)
         .then(function(response){
             
-        })  
+        });  
 }
 
 /**
  * Отправка запроса для удаления новости
+ * @param login логин пользователя
+ * @param idEvent идентификатор новости
  */
 export async function deleteEvent(login, idEvent){
     await axios.delete(URL + "/"+ login + "/delete/" + idEvent)
     .then(function(response){
         
-    })
+    });
 }
 
+/**
+ * Отправка запроса для получения новостей модератора
+ * @param profile компонент профиля
+ * @param id идентификатор Modal
+ */
 export async function getMyNews(profile, id="None"){
     let cookie = cookieToObject();
     await axios.get(URL + "/" + cookie["user"] + "/get")
@@ -93,6 +113,11 @@ export async function getMyNews(profile, id="None"){
     });
 }
 
+/**
+ * Создание компонента новости с данными объекта
+ * @param obj объект
+ * @returns компонент новости
+ */
 export function objectToNewsPrev(obj){
     return <NewsPreview
         id = {obj.id}

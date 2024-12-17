@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { getImage, saveImage, types } from '../services/imageService';
 import "../../css/profile.css"
 
+/**
+ * Функция-компонент для загрузки изображений
+ * @param props компонент(element)
+ * @returns компонент для загрузки изображений
+ */
 function FileUploader(props){
       const [file, setFile] = useState(null);
       return (

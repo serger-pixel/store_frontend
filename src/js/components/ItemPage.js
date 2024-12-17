@@ -17,8 +17,8 @@ class ItemPage extends React.Component{
 
     /**
      * Конструктор
-     * @param
-     * props - id товара
+     * @param props идентификатор товара
+     * 
      */
     constructor(props){
         super(props)
